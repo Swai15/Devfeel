@@ -1,0 +1,33 @@
+* {
+  margin: 5px;
+}
+
+.nav-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.nav-container a {
+  justify-self: end;
+  margin-right: 50px;
+}
+
+.home-featured {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(230, 230, 230);
+}
+
+.create-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.posts-container {
+  height: 500px;
+  background-color: rgb(236, 236, 236);
+}
