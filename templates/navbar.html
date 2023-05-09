@@ -2,7 +2,20 @@
 
 <div class="nav-container">
   <h3>LOGO</h3>
-  <a href="{% url 'login' %}" class="login">
-    <p>login</p>
-  </a>
+
+  {% if request.user.is_authenticated %}
+  <div class="nav-profile">
+    <p>{{user.email}}</p>
+    <a href="{% url 'logout' %}" class="login">
+      <p>logout</p>
+    </a>
+  </div>
+
+  {% else %}
+  <div class="nav-profile">
+    <a href="{% url 'login' %}" class="login">
+      <p>login</p>
+    </a>
+    {% endif %}
+  </div>
 </div>

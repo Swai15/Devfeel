@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
@@ -10,7 +11,11 @@ def home(request):
 
   return render(request, 'base/home.html', {})
 
+
 def loginPage(request):
+    if request.user.is_authenticated:
+      return redirect('home')
+
     if request.method == 'POST':
       email = request.POST.get('email')
       password = request.POST.get('password')
@@ -22,4 +27,11 @@ def loginPage(request):
       else:
         messages.error(request, 'Usermame or password does not exist')
 
-    return render(request, 'base/login.html', {})
+    context = {}
+    return render(request, 'base/login.html', context)
+
+
+def logoutPage(request):
+  logout(request)
+  return redirect('home')
+

@@ -7,9 +7,26 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.nav-container a {
+/* .nav-container div {
+  border: 1px black solid;
+} */
+
+.nav-profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-self: end;
-  margin-right: 50px;
+
+}
+
+.nav-profile a {
+  margin-top: 0px;
+  position: absolute;
+  right: 2em
+}
+
+.nav-profile>p {
+  position: absolute;
+  right: 6em
 }
 
 .home-featured {
