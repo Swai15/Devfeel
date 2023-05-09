@@ -19,6 +19,14 @@
       <button type="submit">submit</button>
     </div>
   </form>
+
+  <!-- sign up -->
+  <div>
+    <p>Not already signed up?</p>
+    <a href="{% url 'register' %}">
+      <p>Register</p>
+    </a>
+  </div>
   {% if messages %}
   <ul class="messages">
     {% for message in messages %}
