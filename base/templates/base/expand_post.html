@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+<!-- start block -->
+{% block content %}
+<main>
+  <div>
+    <div class="post-topic">
+      <h3>@{{post.topic}}</h3>
+      <small>{{post.author.name}}</small>
+    </div>
+
+    <div class="post-description">
+      <h4>{{post.description}}</h4>
+      <small>{{post.post_date}} </small>
+    </div>
+
+    <div>
+      <p>{{post.body|safe}}</p>
+    </div>
+  </div>
+</main>
+{% endblock content %}

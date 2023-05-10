@@ -23,8 +23,10 @@
     <!-- posts -->
     {% for post in posts %}
     <div class="post-container">
-      <p>{{post.topic}}</p>
-      <p>{{post.description}}</p>
+      <a href="{% url 'post-detail' pk=post.id %}">
+        <h3>{{post.topic}}</h3>
+      </a>
+      <h4>{{post.description}}</h4>
       <p>{{post.body|safe}}</p>
     </div>
 

@@ -74,3 +74,9 @@ def createPost(request):
 
     context = {'form': form}
     return render(request, 'base/createpost_form.html', context)
+
+def expandPost(request, pk):
+  post = Post.objects.get(id=pk)
+
+  context = {'post': post}
+  return render(request, 'base/expand_post.html', context)

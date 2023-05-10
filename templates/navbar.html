@@ -7,7 +7,7 @@
 
   {% if request.user.is_authenticated %}
   <div class="nav-profile">
-    <p>{{user.email}}</p>
+    <p>{{user.name}}</p>
     <a href="{% url 'logout' %}" class="login">
       <p>logout</p>
     </a>
