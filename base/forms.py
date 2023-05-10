@@ -1,6 +1,9 @@
+from django import forms
 from django.forms import ModelForm
+from ckeditor.widgets import CKEditorWidget
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from .models import User, Post
+
 
 # # register
 # class UserForm(UserCreationForm):
@@ -15,3 +18,10 @@ class RegisterForm(UserCreationForm):
     labels = {
       'name' : 'Username'
     }
+
+class CreatePostForm(forms.ModelForm):
+  # body = forms.CharField(widget=CKEditorWidget)
+  class Meta:
+    model = Post
+    fields = '__all__'
+    exclude = ['author']

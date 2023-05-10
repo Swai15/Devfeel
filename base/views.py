@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import RegisterForm
+from .forms import RegisterForm, CreatePostForm
 from django.utils.html import strip_tags
 
 
@@ -30,7 +30,7 @@ def loginPage(request):
         messages.error(request, 'Usermame or password does not exist')
 
     context = {}
-    return render(request, 'base/login.html', context)
+    return render(request, 'base/login_form.html', context)
 
 
 def logoutPage(request):
@@ -57,4 +57,17 @@ def registerUser(request):
       messages.error(request, ' '.join(error_messages))
 
   context = {'form': form}
-  return render(request, 'base/register.html', context)
+  return render(request, 'base/register_form.html', context)
+
+@login_required(login_url='login')
+def createPost(request):
+    form = CreatePostForm()
+    if request.method == 'POST':
+      form = CreatePostForm(request.POST)
+      post = form.save(commit=False)
+      post.author = request.user
+      post.save()
+      redirect('home')      
+
+    context = {'form': form}
+    return render(request, 'base/createpost_form.html', context)
