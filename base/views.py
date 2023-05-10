@@ -4,14 +4,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import RegisterForm, CreatePostForm
 from django.utils.html import strip_tags
+from .models import User, Post
 
 
 # Create your views here.
 
 
 def home(request):
+  posts = Post.objects.all()
+  context = {'posts': posts}
 
-  return render(request, 'base/home.html', {})
+  return render(request, 'base/home.html', context)
 
 
 def loginPage(request):
@@ -67,7 +70,7 @@ def createPost(request):
       post = form.save(commit=False)
       post.author = request.user
       post.save()
-      redirect('home')      
+      return redirect('home')      
 
     context = {'form': form}
     return render(request, 'base/createpost_form.html', context)
