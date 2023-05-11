@@ -1,0 +1,23 @@
+{% extends 'main.html' %} {% load static %}
+<!-- start block -->
+{% block content %}
+<main>
+  <form action="" method="POST" id="update-post-form">
+    {% csrf_token %}
+
+    <!-- start for -->
+    {{form.media}} {{form.as_p}}
+    <!-- {% for field in form %}
+    <div>
+      <label for="">{{field.label}}</label>
+      {{field}}
+    </div>
+    {% endfor %} -->
+    <a href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+    <button type="submit" id="editpost-btn">Edit</button>
+  </form>
+
+  <script src="{% static 'js/config.js' %}"></script>
+  <!-- <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script> -->
+</main>
+{% endblock content %}

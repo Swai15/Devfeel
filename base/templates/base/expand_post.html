@@ -15,6 +15,11 @@
     </div>
 
     <div>
+      <a href="{% url 'update-post' pk=post.id %}">edit</a>
+      <a href="">delete</a>
+    </div>
+
+    <div>
       <p>{{post.body|safe}}</p>
     </div>
   </div>

@@ -80,3 +80,20 @@ def expandPost(request, pk):
 
   context = {'post': post}
   return render(request, 'base/expand_post.html', context)
+
+@login_required(login_url='login')
+def updatePost(request, pk):
+  post = Post.objects.get(id=pk)
+  form = CreatePostForm(instance=post)
+  if request.method == 'POST':
+    form = CreatePostForm(request.POST, instance=post)
+
+  if form.is_valid():
+    post = form.save(commit=False)
+    post.author = request.user
+    post.save()
+    return redirect('post-details', pk=post.id)
+    
+
+  context = {'form':form}
+  return render(request, 'base/updatepost_form.html', context)
