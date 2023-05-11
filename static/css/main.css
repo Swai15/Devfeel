@@ -24,9 +24,10 @@
   right: 2em
 }
 
-.nav-profile>p {
+.nav-profile>.nav-user-profile {
   position: absolute;
-  right: 6em
+  right: 6em;
+
 }
 
 .home-featured {
@@ -42,6 +43,7 @@
   align-items: center;
   justify-content: space-between;
 
+
 }
 
 .posts-container {
@@ -51,4 +53,10 @@
 
 .post-container {
   background-color: rgb(216, 216, 216);
+}
+
+
+/* User Profile */
+.user-profile-head {
+  text-align: center;
 }

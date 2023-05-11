@@ -7,7 +7,9 @@
 
   {% if request.user.is_authenticated %}
   <div class="nav-profile">
-    <p>{{user.name}}</p>
+    <a class="nav-user-profile" href="{% url 'user-profile' request.user.id%}">
+      <p>{{request.user.name}}</p>
+    </a>
     <a href="{% url 'logout' %}" class="login">
       <p>logout</p>
     </a>

@@ -12,6 +12,7 @@ from .models import User, Post
 
 def home(request):
   posts = Post.objects.all()
+
   context = {'posts': posts}
 
   return render(request, 'base/home.html', context)
@@ -106,3 +107,11 @@ def deletePost(request, pk):
       return redirect('home')
 
     return render(request, 'base/delete_post.html')
+
+
+def userProfile(request, pk):
+  user = User.objects.get(id=pk)
+  posts = Post.objects.filter(author=user)
+
+  context = {'user':user, 'posts':posts}
+  return render(request, 'base/user_profile.html', context)
