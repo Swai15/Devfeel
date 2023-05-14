@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import RegisterForm, CreatePostForm
 from django.utils.html import strip_tags
-from .models import User, Post
+from .models import User, Post, Like
 
 
 # Create your views here.
@@ -115,3 +116,21 @@ def userProfile(request, pk):
 
   context = {'user':user, 'posts':posts}
   return render(request, 'base/user_profile.html', context)
+
+def likePost(request, post_id):
+    try:
+      post = Post.objects.get(pk=post_id)
+      like, created = Like.objects.get_or_create(user=request.user, post=post)
+      if created:
+        action = 'like'
+      else: 
+        like.delete()
+        action = 'unlike'
+
+      response = {'success': True, 'action':action}
+    except Post.DoesNotExist:
+      response = {'success': False, 'error': 'Post not found'}
+
+
+    return JsonResponse(response)
+

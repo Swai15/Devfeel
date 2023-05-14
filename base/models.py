@@ -22,7 +22,14 @@ class Post(models.Model):
     body = RichTextField(blank=True, null=True)
     # body = models.TextField()
     post_date = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(User, through='Like', related_name='liked_posts')
     
 
     def __str__(self):
       return self.topic
+
+
+class Like(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  post = models.ForeignKey(Post, on_delete=models.CASCADE)
+  like_date = models.DateTimeField(auto_now_add=True)
