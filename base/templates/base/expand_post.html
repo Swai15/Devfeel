@@ -67,10 +67,10 @@
 
             if (data.action === "like") {
               likeCount.textContent = `${parseInt(likeCount.textContent) + 1} likes`;
-              likeButton.textContent = "Like";
+              likeButton.textContent = "UnLike";
             } else {
               likeCount.textContent = `${parseInt(likeCount.textContent) - 1} likes `;
-              likeButton.textContent = "Unlike";
+              likeButton.textContent = "like";
             }
           }
         });
