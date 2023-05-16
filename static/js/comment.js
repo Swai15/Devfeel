@@ -4,18 +4,15 @@ const postId = commentForm.dataset.commentId;
 
 
 commentForm.addEventListener('submit',(e) => {
-  const commentInput = document.querySelector('[name="comment-text"]');
-  const commentText = commentInput.value.trim();
-  console.log(commentText);
   e.preventDefault();
 
 
-  // const commentInput = document.querySelector('[name="comment-text"]');
-  // const commentText = commentInput.value.trim();
+  const commentInput = document.querySelector('[name="comment-text"]');
+  const commentText = commentInput.value.trim();
 
   fetch(`/submit-comment/${postId}/`,{
     method: "POST",
-    credentils: "same-origin",
+    credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
       "X-CSRFToken": getCookie("csrftoken"),

@@ -45,7 +45,7 @@
   <hr />
 
   <!-- COMMENTS form -->
-  <form action="" id="comment-form" data-comment-id="{{post.id}}">
+  <form action="" id="comment-form" method="POST">
     {% csrf_token %}
 
     <div>
@@ -57,7 +57,7 @@
 
   <!-- Comments display -->
   <div class="comment-section">
-    {% for comment in comments %}
+    {% for comment in post_comments %}
     <div class="comment">
       <p>{{comment.content}}</p>
       <p>By: {{comment.user.name}}</p>
@@ -65,7 +65,16 @@
     {% endfor %}
   </div>
 
+  <!-- <div class="comment-section">
+    {% for comment in comments %}
+    <div class="comment">
+      <p>{{comment.content}}</p>
+      <p>By: {{comment.user.name}}</p>
+    </div>
+    {% endfor %}
+  </div> -->
+
   <script src="/static/js/like.js"></script>
-  <script src="/static/js/comment.js"></script>
+  <!-- <script src="/static/js/comment.js"></script> -->
 </main>
 {% endblock content %}

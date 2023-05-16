@@ -35,7 +35,7 @@ class Like(models.Model):
   like_date = models.DateTimeField(auto_now_add=True)
 
 class Comment(models.Model):
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
-  post = models.ForeignKey(Post, on_delete=models.CASCADE)
+  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_commennts')
+  post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_comments')
   content = models.TextField()
   comment_date = models.DateTimeField(auto_now_add=True)

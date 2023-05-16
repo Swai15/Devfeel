@@ -12,5 +12,5 @@ urlpatterns = [
   path('delete-post/<str:pk>/', views.deletePost, name='delete-post'),
   path('user-profile/<str:pk>/', views.userProfile, name='user-profile'),
   path('like-post/<int:post_id>/', views.likePost, name='like-post'),
-  path('submit-comment/<int:post_id>/', views.submitComment, name='submit-comment')
+  # path('submit-comment/<int:post_id>/', views.submitComment, name='submit-comment')
 ]
