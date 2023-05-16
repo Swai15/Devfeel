@@ -60,7 +60,8 @@
     {% for comment in post_comments %}
     <div class="comment">
       <p>{{comment.content}}</p>
-      <p>By: {{comment.user.name}}</p>
+      <small>By: {{comment.user.name}}</small>
+      <a href="{% url 'delete-comment' comment.id %}">delete</a>
     </div>
     {% endfor %}
   </div>

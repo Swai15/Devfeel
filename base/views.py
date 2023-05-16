@@ -143,41 +143,11 @@ def likePost(request, post_id):
 
     return JsonResponse(response)
 
-# @login_required(login_url='login')
-# def submitComment(request, post_id):
-#   post = Post.objects.get(pk=post_id)
+def deleteComment(request, comment_id):
+  comment = Comment.objects.get(pk=comment_id)
+  if request.method == 'POST':
+    comment.delete()
+    return redirect('post-details', pk=comment.post.id)
 
-#   if request.method == 'POST':    
-#     # comment_text = request.POST.get('comment-text')
-#     # print(comment_text)
-#     comment = Comment.objects.create(
-#       post=post,
-#       user=request.user,
-#       content=request.POST.get('comment-text')
-#       )
-
-#     response = {
-#       'success': True,
-#       'comment': {
-#           'text': comment.content,
-#           'author': comment.user.name
-#       }
-#     }
-#   else:
-#       response = {'success': False}
-
-#   return JsonResponse(response)
-# @login_required(login_url='login')
-# def submitComment(request, post_id):
-#   post = Post.objects.get(pk=post_id)
-#   post_comments = post.post_comments.all()
-
-#   if request.method == 'POST': 
-#     comment = Comment.objects.create(
-#       post=post,
-#       user=request.user,
-#       content=request.POST.get('comment-text')
-#       )
-
-#   return render(request)
-
+  context = {'comment': comment}
+  return render(request, 'base/delete_comment.html', context)
