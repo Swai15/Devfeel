@@ -45,6 +45,7 @@
   <hr />
 
   <!-- COMMENTS form -->
+  {% if request.user.is_authenticated %}
   <form action="" id="comment-form" method="POST">
     {% csrf_token %}
 
@@ -54,14 +55,18 @@
       <button type="submit">Submit</button>
     </div>
   </form>
+  {% endif %}
 
   <!-- Comments display -->
   <div class="comment-section">
     {% for comment in post_comments %}
     <div class="comment">
       <p>{{comment.content}}</p>
+
       <small>By: {{comment.user.name}}</small>
+      {% if request.user == comment.user %}
       <a href="{% url 'delete-comment' comment.id %}">delete</a>
+      {% endif %}
     </div>
     {% endfor %}
   </div>
