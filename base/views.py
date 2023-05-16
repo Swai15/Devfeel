@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import RegisterForm, CreatePostForm
 from django.utils.html import strip_tags
-from .models import User, Post, Like
+from .models import User, Post, Like, Comment
 
 
 # Create your views here.
@@ -131,6 +131,25 @@ def likePost(request, post_id):
     except Post.DoesNotExist:
       response = {'success': False, 'error': 'Post not found'}
 
-
     return JsonResponse(response)
+
+@login_required(login_url='login')
+def submitComment(request, post_id):
+  if request.method == 'POST':
+    post = Post.objects.get(pk=post_id)
+    comment_text = request.POST.get('comment-text')
+    print(comment_text)
+    comment = Comment.objects.create(post=post, user=request.user, content=comment_text)
+
+    response = {
+      'success': True,
+      'comment': {
+          'text': comment.content,
+          'author': comment.user.name
+      }
+    }
+  else:
+      response = {'success': False}
+
+  return JsonResponse(response)
 

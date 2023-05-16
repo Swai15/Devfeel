@@ -60,3 +60,8 @@
 .user-profile-head {
   text-align: center;
 }
+
+.message-textarea {
+  display: grid;
+  grid-template-columns: 1fr;
+}

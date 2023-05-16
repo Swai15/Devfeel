@@ -1,4 +1,4 @@
-{% extends 'main.html' %} {% load like_tags %}
+{% extends 'main.html' %} {% load like_tags %} {% load static %}
 
 <!-- start block -->
 {% block content %}
@@ -23,8 +23,7 @@
       <p>{{post.body|safe}}</p>
     </div>
 
-    <!-- like -->
-
+    <!-- LIKES -->
     <div>
       {% if request.user.is_authenticated %}
       <button class="like-button" data-post-id="{{post.id}}">
@@ -36,50 +35,37 @@
 
       {% endif %}
       <!-- like count -->
-      <p id="like-count-{{post.id}}">{{post.likes.count}}</p>
+      <span id="like-count-{{post.id}}">
+        {{post.likes.count}}
+        <!-- if -->
+        {% if post.likes.count == 1 %} like {% else %} likes {%endif%}
+      </span>
     </div>
   </div>
+  <hr />
 
-  <script>
-    const likeButton = document.querySelector(".like-button");
-    likeButton.addEventListener("click", () => {
-      const postId = likeButton.dataset.postId;
-      likePost(postId);
-    });
+  <!-- COMMENTS form -->
+  <form action="" id="comment-form" data-comment-id="{{post.id}}">
+    {% csrf_token %}
 
-    function likePost(postId) {
-      const url = `/like-post/${postId}/`;
-      fetch(url, {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          "X-CSRFToken": getCookie("csrftoken"),
-        },
-      })
-        .then((response) => {
-          console.log(response);
-          return response.json();
-        })
-        .then((data) => {
-          if (data.success) {
-            const likeCount = document.querySelector(`#like-count-${postId}`);
-            const likeButton = document.querySelector(`.like-button[data-post-id="${postId}"]`);
+    <div>
+      <textarea name="comment-text" cols="50" rows="3" placeholder="Write a comment..."></textarea>
+      <br />
+      <button type="submit">Submit</button>
+    </div>
+  </form>
 
-            if (data.action === "like") {
-              likeCount.textContent = `${parseInt(likeCount.textContent) + 1} likes`;
-              likeButton.textContent = "UnLike";
-            } else {
-              likeCount.textContent = `${parseInt(likeCount.textContent) - 1} likes `;
-              likeButton.textContent = "like";
-            }
-          }
-        });
-    }
+  <!-- Comments display -->
+  <div class="comment-section">
+    {% for comment in comments %}
+    <div class="comment">
+      <p>{{comment.content}}</p>
+      <p>By: {{comment.user.name}}</p>
+    </div>
+    {% endfor %}
+  </div>
 
-    function getCookie(name) {
-      const cookieValue = document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`);
-      return cookieValue ? cookieValue.pop() : "";
-    }
-  </script>
+  <script src="/static/js/like.js"></script>
+  <script src="/static/js/comment.js"></script>
 </main>
 {% endblock content %}
