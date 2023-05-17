@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.contrib import messages
 from .forms import RegisterForm, CreatePostForm
 from django.utils.html import strip_tags
@@ -12,11 +13,29 @@ from .models import User, Post, Like, Comment
 
 
 def home(request):
-  posts = Post.objects.all()
+  search_posts = request.GET.get('search')
+
+  if search_posts:
+    posts = Post.objects.filter(Q(topic__icontains=search_posts) | Q(author__name__icontains=search_posts))
+  else:
+    posts = Post.objects.all()
 
   context = {'posts': posts}
 
   return render(request, 'base/home.html', context)
+
+
+# def search(request):
+#   search_post = request.GET.get('search')
+#   if search_post:
+#     posts= Post.objects.filter(Q(topic__icontains=search_post) | Q(author__name__icontains=search_post))
+#   else:
+#     posts = Post.objects.all()
+
+
+#   context = {}
+#   return render(request, '', context)
+
 
 
 def loginPage(request):
