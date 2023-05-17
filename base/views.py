@@ -141,7 +141,13 @@ def deletePost(request, pk):
 
 def userProfile(request, pk):
   user = User.objects.get(id=pk)
-  posts = Post.objects.filter(author=user)
+  search_post = request.GET.get('search')
+
+  if search_post:
+    all_posts = Post.objects.filter(author=user)
+    posts = all_posts.filter(Q(topic__icontains=search_post))
+  else:
+    posts = Post.objects.filter(author=user)
 
   context = {'user':user, 'posts':posts}
   return render(request, 'base/user_profile.html', context)

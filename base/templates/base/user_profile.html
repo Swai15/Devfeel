@@ -12,9 +12,24 @@
         <p>{{user.bio}}</p>
       </div>
       <hr />
+
+      <div class="search-posts">
+        <form action="{% url 'user-profile' user.id %}">
+          <input name="search" type="search" id="search-home" placeholder="search" />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+
+      {% if request.GET.search %}
+      <div class="search-results-header">
+        <p>Results for <span>'{{request.GET.search}}'</span></p>
+        <a href="{% url 'user-profile' user.id %}">Show all</a>
+      </div>
+      {%else%}
       <div>
         <h3>Posts</h3>
       </div>
+      {%endif%}
     </div>
     <div class="user-profile-posts-container">
       <div>

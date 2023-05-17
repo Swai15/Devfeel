@@ -24,4 +24,4 @@ class CreatePostForm(forms.ModelForm):
   class Meta:
     model = Post
     fields = '__all__'
-    exclude = ['author']
+    exclude = ['author', 'likes']
