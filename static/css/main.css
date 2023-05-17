@@ -30,6 +30,7 @@
 
 }
 
+/* HOME PAGE */
 .home-featured {
   height: 100px;
   display: flex;
@@ -42,8 +43,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
 
-
+.search-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .posts-container {
@@ -55,8 +60,10 @@
   background-color: rgb(216, 216, 216);
 }
 
+/* END OF HOMEPAGE */
 
-/* User Profile */
+
+/* USER PROFILE */
 .user-profile-head {
   text-align: center;
 }

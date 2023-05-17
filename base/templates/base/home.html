@@ -16,9 +16,14 @@
         <input name="search" type="search" id="search-home" placeholder="search" />
         <button type="submit">Search</button>
       </form>
-      <a href="{% url 'home' %}">Show all</a>
     </div>
   </div>
+  {% if request.GET.search %}
+  <div class="search-results-header">
+    <p>Results for <span>'{{request.GET.search}}'</span></p>
+    <a href="{% url 'home' %}">Show all</a>
+  </div>
+  {%endif%}
 
   <!-- body posts -->
   <div class="posts-container">
