@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.views import PasswordResetView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -51,7 +53,14 @@ def loginPage(request):
         login(request, user)
         return redirect('home')
       else:
-        messages.error(request, 'Usermame or password does not exist')
+        if User.objects.filter(email=email).exists():
+          messages.error(request, 'Incorrect Password')
+        else:
+          messages.error(request, 'The email is not registered with us')
+
+
+        
+        
 
     context = {}
     return render(request, 'base/login_form.html', context)
