@@ -1,16 +1,20 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from django.contrib.auth.tokens import default_token_generator
+from django.urls import reverse
+from django.shortcuts import resolve_url
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.views import PasswordResetView
-from django.contrib.auth import authenticate, login, logout
+from django.core.paginator import Paginator
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q, F
 from django.contrib import messages
 from .forms import RegisterForm, CreatePostForm
 from django.utils.html import strip_tags
 from .models import User, Post, Like, Comment
 
-
+User = get_user_model()
 # Create your views here.
 
 
@@ -41,8 +45,12 @@ def home(request):
 
 
 def loginPage(request):
+
+
     if request.user.is_authenticated:
       return redirect('home')
+
+    reset_password = False
 
     if request.method == 'POST':
       email = request.POST.get('email')
@@ -54,15 +62,32 @@ def loginPage(request):
         return redirect('home')
       else:
         if User.objects.filter(email=email).exists():
+          user = User.objects.get(email=email)
+          user.failed_login_attempts += 1
+          user.save()
+
+          if user.failed_login_attempts >=2:
+              token_generator = default_token_generator
+              uid = user.pk
+              token = token_generator.make_token(user)
+
+              # Get the password reset URL
+              reset_url = reverse('password_reset')
+              reset_url = reset_url.replace('password_reset', '')
+              reset_url = resolve_url(reset_url)
+
+              reset_url += f'reset/{uid}/{token}/'
+              reset_password = True
           messages.error(request, 'Incorrect Password')
+
         else:
-          messages.error(request, 'The email is not registered with us')
+          messages.error(request, 'The email is not registered with us')  
+          reset_password = False  
 
+    else:
+      reset_password = False  
 
-        
-        
-
-    context = {}
+    context = {'reset_password': reset_password}
     return render(request, 'base/login_form.html', context)
 
 

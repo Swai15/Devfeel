@@ -27,6 +27,15 @@
       <p>Register</p>
     </a>
   </div>
+
+  <!-- forgort passwords -->
+  {% if reset_password %}
+  <div>
+    <a href="{% url 'password_reset' %}">Forgot Password?</a>
+  </div>
+  {% endif %}
+
+  <!-- error messages -->
   {% if messages %}
   <ul class="messages">
     {% for message in messages %}

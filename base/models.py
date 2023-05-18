@@ -9,6 +9,7 @@ class User(AbstractUser):
   name = models.CharField(max_length=200, null=True)
   email = models.EmailField(unique=True, null=True)
   bio = models.TextField(blank=True ,null=True)
+  failed_login_attempts = models.IntegerField(default=0)
   # avatar = models.ImageField(null=True,default=)
 
   USERNAME_FIELD = 'email'
