@@ -1,10 +1,24 @@
-{% extends 'main.html' %}
+{% extends 'main.html' %} {% load static %}
 
 <!-- start block -->
 {% block content %}
 <main>
   <div class="user-profile">
     <div class="user-profile-head">
+      <div class="user-profile-image">
+        {% if request.user.is_authenticated %}
+        <img src="{{user.avatar.url}}" alt="Profile Picture" />
+        {% else %}
+        <img src="{% static 'images/avatar.svg' %}" alt="" />
+        {% endif %}
+      </div>
+
+      <div class="user-profile-edit">
+        <a href="{% url 'edit-user-profile' user.id%}">
+          <div>Edit Profile</div>
+        </a>
+      </div>
+
       <div>
         <h3>{{user.name}}</h3>
       </div>

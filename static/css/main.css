@@ -60,6 +60,12 @@
   background-color: rgb(216, 216, 216);
 }
 
+.paginator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* END OF HOMEPAGE */
 
 
@@ -71,4 +77,9 @@
 .message-textarea {
   display: grid;
   grid-template-columns: 1fr;
+}
+
+
+.user-profile-image img {
+  height: 60px;
 }

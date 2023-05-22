@@ -3,7 +3,7 @@
 <!-- start bod -->
 {% block content %}
 <main>
-  <form action="" method="POST">
+  <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <!-- fields -->
@@ -13,6 +13,11 @@
       {{field}}
     </div>
     {% endfor %}
+    <!-- <div>
+      <label for="avatar">Profile Picture</label>
+      <input type="file" name="avatar" id="avatar" />
+    </div> -->
+
     <button type="submit">Register</button>
   </form>
 

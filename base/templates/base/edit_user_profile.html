@@ -1,0 +1,38 @@
+{% extends 'main.html' %} {% block content %}
+<main>
+  <form action="" method="POST">
+    {% csrf_token %}
+
+    <!-- fields -->
+    <div>
+      <label for="">Username</label>
+      {{form.name}}
+    </div>
+
+    <div>
+      <label for="">Email</label>
+      {{form.email}}
+    </div>
+
+    <div>
+      <div>
+        <label for="">Avatar</label>
+        {{form.avatar}}
+      </div>
+
+      <div>
+        <input type="checkbox" , name="remove_avatar" id="remove_avatar" />
+        <label for="remove_avatar">Remove Avatar</label>
+      </div>
+    </div>
+    <div>
+      <label for="">Bio</label>
+      {{form.bio}}
+    </div>
+    <!-- end fields -->
+
+    <button type="submit">Edit</button>
+    <a href="{% url 'user-profile' user.id %}">cancel</a>
+  </form>
+</main>
+{% endblock content %}

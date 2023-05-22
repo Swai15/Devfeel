@@ -25,3 +25,9 @@ class CreatePostForm(forms.ModelForm):
     model = Post
     fields = '__all__'
     exclude = ['author', 'likes']
+
+class editProfileForm(forms.ModelForm):
+  class Meta:
+    model = User
+    fields = {'name', 'email', 'bio', 'avatar'}
+

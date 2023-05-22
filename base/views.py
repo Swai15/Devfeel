@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, F
 from django.contrib import messages
-from .forms import RegisterForm, CreatePostForm
+from .forms import RegisterForm, CreatePostForm, editProfileForm
 from django.utils.html import strip_tags
 from .models import User, Post, Like, Comment
 
@@ -22,11 +22,16 @@ def home(request):
   search_posts = request.GET.get('search')
 
   if search_posts:
-    posts = Post.objects.filter(Q(topic__icontains=search_posts) | Q(author__name__icontains=search_posts))
+    posts = Post.objects.filter(Q(topic__icontains=search_posts) | Q(author__name__icontains=search_posts)).order_by('-post_date')
   else:
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-post_date')
 
-  context = {'posts': posts}
+  paginator = Paginator(posts, 9)
+
+  page_number = request.GET.get('page')
+  page_obj = paginator.get_page(page_number)
+
+  context = { 'page_obj':page_obj}
 
   return render(request, 'base/home.html', context)
 
@@ -106,6 +111,7 @@ def registerUser(request):
       user.save()
       login(request, user)
       return redirect('home')
+      
     else:
       errors = form.errors
       error_messages = []
@@ -186,6 +192,24 @@ def userProfile(request, pk):
   context = {'user':user, 'posts':posts}
   return render(request, 'base/user_profile.html', context)
 
+@login_required(login_url='login')
+def editUserProfile(request, pk):
+  user = User.objects.get(id=pk)
+  form = editProfileForm(instance=user)
+
+  if request.method == 'POST':
+    form = editProfileForm(request.POST,request.FILES,instance=user)
+    if form.is_valid():
+      if 'remove_avatar' in request.POST:
+        user.avatar.delete()
+        user.avatar = 'avatar.svg'
+      form.save()
+      return redirect('user-profile', pk=pk)
+
+  context = {'user':user, 'form': form}
+  return render(request, 'base/edit_user_profile.html', context)
+
+
 def likePost(request, post_id):
     try:
       post = Post.objects.get(pk=post_id)
@@ -210,3 +234,4 @@ def deleteComment(request, comment_id):
 
   context = {'comment': comment}
   return render(request, 'base/delete_comment.html', context)
+
