@@ -9,7 +9,7 @@
         {% if request.user.is_authenticated %}
         <img src="{{user.avatar.url}}" alt="Profile Picture" />
         {% else %}
-        <img src="{% static 'images/avatar.svg' %}" alt="" />
+        <img src="{% static 'images/default_images/avatar.svg' %}" alt="" />
         {% endif %}
       </div>
 

@@ -10,7 +10,7 @@ class User(AbstractUser):
   email = models.EmailField(unique=True, null=True)
   bio = models.TextField(blank=True ,null=True)
   failed_login_attempts = models.IntegerField(default=0)
-  avatar = models.ImageField(null=True,default='avatar.svg', upload_to='images/')
+  avatar = models.ImageField(null=True,default='avatar.svg', upload_to='avatars/')
 
   USERNAME_FIELD = 'email'
   REQUIRED_FIELDS = []
@@ -21,6 +21,7 @@ class Post(models.Model):
     topic = models.CharField(max_length=200)
     description = models.CharField(max_length=400)
     body = RichTextField(blank=True, null=True)
+    # post_image = models.ImageField(null=False, upload_to='post_images/')
     # body = models.TextField()
     post_date = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, through='Like', related_name='liked_posts')
