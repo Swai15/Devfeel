@@ -14,6 +14,10 @@ from .forms import RegisterForm, CreatePostForm, editProfileForm
 from django.utils.html import strip_tags
 from .models import User, Post, Like, Comment
 
+from django.core.files import File
+from django.conf import settings
+import os
+
 User = get_user_model()
 # Create your views here.
 
@@ -33,7 +37,7 @@ def home(request):
 
   context = { 'page_obj':page_obj}
 
-  return render(request, 'base/home.html', context)
+  return render(request, 'base/index.html', context)
 
 
 # def search(request):
