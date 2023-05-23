@@ -21,7 +21,7 @@ class Post(models.Model):
     topic = models.CharField(max_length=200)
     description = models.CharField(max_length=400)
     body = RichTextField(blank=True, null=True)
-    # post_image = models.ImageField(null=False, upload_to='post_images/')
+    post_image = models.ImageField(null=False, upload_to='post_images/', default='post_default')
     # body = models.TextField()
     post_date = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, through='Like', related_name='liked_posts')

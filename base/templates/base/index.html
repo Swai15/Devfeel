@@ -1,4 +1,7 @@
-{% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %} {% load static %}
+
+<!-- start block -->
+{% block content %}
 <main>
   <div class="home-featured">
     <h2>featured post and image</h2>
@@ -29,37 +32,44 @@
   <div class="posts-container">
     <!-- posts -->
     {% for post in page_obj %}
+
     <div class="post-container">
-      <a href="{% url 'post-details' pk=post.id %}">
-        <h3>{{post.topic}}</h3>
-      </a>
-      <h4>{{post.description}}</h4>
-      <p>{{post.body|safe}}</p>
+      <div class="post-container-image">
+        <img src="{% static 'images/default_images/post_default.jpg' %}" alt="default post image" />
+      </div>
+
+      <div class="post-container-body">
+        <a href="{% url 'post-details' pk=post.id %}">
+          <h3>{{post.topic}}</h3>
+        </a>
+        <h4>{{post.description}}</h4>
+        <p>{{post.body|safe|truncatewords:20}}</p>
+      </div>
     </div>
     {% endfor %}
+  </div>
 
-    <!-- Pagination -->
-    <div class="paginator">
-      {% if page_obj.has_previous %}
-      <a href="?search={{ search_posts }}&page={{ page_obj.previous_page_number }}">Previous</a>
-      {% endif %}
+  <!-- Pagination -->
+  <div class="paginator">
+    {% if page_obj.has_previous %}
+    <a href="?search={{ search_posts }}&page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
 
-      <!-- for -->
-      {% for num in page_obj.paginator.page_range %}
-      <!-- if -->
-      {% if page_obj.number == num %}
-      <span class="current-page">{{ num }}</span>
-      {% else %}
-      <a href="?search={{ search_posts }}&page={{ num }}">{{ num }}</a>
-      {% endif %}
-      <!-- endfor -->
-      {% endfor %}
+    <!-- for -->
+    {% for num in page_obj.paginator.page_range %}
+    <!-- if -->
+    {% if page_obj.number == num %}
+    <span class="current-page">{{ num }}</span>
+    {% else %}
+    <a href="?search={{ search_posts }}&page={{ num }}">{{ num }}</a>
+    {% endif %}
+    <!-- endfor -->
+    {% endfor %}
 
-      <!-- if -->
-      {% if page_obj.has_next %}
-      <a href="?search={{ search_posts }}&page={{ page_obj.next_page_number }}">Next</a>
-      {% endif %}
-    </div>
+    <!-- if -->
+    {% if page_obj.has_next %}
+    <a href="?search={{ search_posts }}&page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
   </div>
 </main>
 
