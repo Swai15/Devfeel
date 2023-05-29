@@ -131,12 +131,15 @@ def registerUser(request):
 def createPost(request):
     form = CreatePostForm()
     if request.method == 'POST':
-      form = CreatePostForm(request.POST)
-      post = form.save(commit=False)
-      post.author = request.user
-      post.save()
-      return redirect('home')      
-
+      form = CreatePostForm(request.POST, request.FILES)
+      if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        post.save()
+        return redirect('home')      
+      else:
+        print(form.errors)
+        
     context = {'form': form}
     return render(request, 'base/createpost_form.html', context)
 

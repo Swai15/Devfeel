@@ -2,17 +2,38 @@
 <!-- start block -->
 {% block content %}
 <main>
-  <form action="" method="POST">
+  <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <!-- start for -->
-    {{form.media}} {{form.as_p}}
+    <!-- {{form.media}} {{form.as_p}} -->
     <!-- {% for field in form %}
     <div>
       <label for="">{{field.label}}</label>
       {{field}}
     </div>
     {% endfor %} -->
+
+    <div>
+      <label for="">Topic</label>
+      {{form.topic}}
+    </div>
+
+    <div>
+      <label for="">Description</label>
+      {{form.description}}
+    </div>
+    <div>
+      <label for="">Body</label>
+      {{form.body}}
+    </div>
+    <div>
+      <label for="">Upload a post image:</label>
+      {{form.post_image}}
+    </div>
+
+    {{form.media}}
+
     <button type="submit">submit</button>
   </form>
 
