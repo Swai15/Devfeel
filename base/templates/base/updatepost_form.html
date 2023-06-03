@@ -2,17 +2,36 @@
 <!-- start block -->
 {% block content %}
 <main>
-  <form action="" method="POST" id="update-post-form">
+  <form action="" method="POST" enctype="multipart/form-data" id="update-post-form">
     {% csrf_token %}
 
-    <!-- start for -->
-    {{form.media}} {{form.as_p}}
-    <!-- {% for field in form %}
+    <!-- start fields -->
+    {{form.media}}
     <div>
-      <label for="">{{field.label}}</label>
-      {{field}}
+      <label for="topic"></label>
+      {{form.topic}}
     </div>
-    {% endfor %} -->
+
+    <div>
+      <label for="description"></label>
+      {{form.description}}
+    </div>
+
+    <div>
+      <label for="body"></label>
+      {{form.body}}
+    </div>
+
+    <div>
+      <label for="{{form.post_image.id_for_label}}">Change post image: </label>
+      {{form.post_image}}
+    </div>
+
+    <div>
+      <input type="checkbox" , name="remove_post_image" id="remove_post_image" />
+      <label for="remove_post_image">Remove post image</label>
+    </div>
+    <!-- endfields  -->
     <a href="{{ request.META.HTTP_REFERER }}">Cancel</a>
     <button type="submit" id="editpost-btn">Edit</button>
   </form>

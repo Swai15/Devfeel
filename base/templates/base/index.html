@@ -34,7 +34,7 @@
     {% for post in page_obj %}
 
     <!-- if -->
-    <!-- {% if post.post_image %}
+    {% if post.post_image %}
     <div class="post-container">
       <div class="post-container-image">
         <img src="{{post.post_image.url}}" alt="Post image" />
@@ -47,17 +47,8 @@
 
       </div>
 
-      {% endif %} -->
+      {% endif %}
 
-    <div class="post-container">
-      <div class="post-container-image">
-        <img src="{% static 'images/default_images/post_default.jpg' %}" alt="default post image" />
-      </div>
-
-      <!-- <div class="post-container">
-      <div class="post-container-image">
-        <img src="{{post.post_image.url}}" alt="Post image" />
-      </div> -->
 
       <div class="post-container-body">
         <a href="{% url 'post-details' pk=post.id %}">

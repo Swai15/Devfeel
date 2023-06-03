@@ -164,11 +164,12 @@ def updatePost(request, pk):
   post = Post.objects.get(id=pk)
   form = CreatePostForm(instance=post)
   if request.method == 'POST':
-    form = CreatePostForm(request.POST, instance=post)
+    form = CreatePostForm(request.POST, request.FILES, instance=post)
 
   if form.is_valid():
-    post = form.save(commit=False)
-    post.author = request.user
+    if 'remove_post_image' in request.POST:
+      post.post_image.delete()
+      post.post_image =  'default_images/post_default.jpg'
     post.save()
     return redirect('post-details', pk=post.id)
     

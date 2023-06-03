@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, FileInput, ImageField
 from ckeditor.widgets import CKEditorWidget
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, Post
@@ -20,7 +20,13 @@ class RegisterForm(UserCreationForm):
     }
 
 class CreatePostForm(forms.ModelForm):
-  # body = forms.CharField(widget=CKEditorWidget)
+  post_image = ImageField(widget=FileInput)
+  class Meta:
+    model = Post
+    fields = ['topic', 'description', 'body', 'post_image']
+    # exclude = ['author', 'likes']
+
+class EditPostForm(forms.ModelForm):
   class Meta:
     model = Post
     fields = '__all__'
