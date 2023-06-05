@@ -210,7 +210,7 @@ def editUserProfile(request, pk):
     if form.is_valid():
       if 'remove_avatar' in request.POST:
         user.avatar.delete()
-        user.avatar = 'avatar.svg'
+        user.avatar = 'default_images/avatar.svg'
       form.save()
       return redirect('user-profile', pk=pk)
 

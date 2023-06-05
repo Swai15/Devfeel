@@ -27,10 +27,13 @@
       {{form.post_image}}
     </div>
 
+    {% if form.post_image.value.url != '/images/default_images/post_default.jpg' %}
     <div>
       <input type="checkbox" , name="remove_post_image" id="remove_post_image" />
       <label for="remove_post_image">Remove post image</label>
     </div>
+    {% endif %}
+
     <!-- endfields  -->
     <a href="{{ request.META.HTTP_REFERER }}">Cancel</a>
     <button type="submit" id="editpost-btn">Edit</button>

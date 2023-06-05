@@ -33,6 +33,7 @@ class EditPostForm(forms.ModelForm):
     exclude = ['author', 'likes']
 
 class editProfileForm(forms.ModelForm):
+  avatar = ImageField(widget=FileInput)
   class Meta:
     model = User
     fields = {'name', 'email', 'bio', 'avatar'}

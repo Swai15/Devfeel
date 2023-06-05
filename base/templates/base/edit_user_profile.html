@@ -15,16 +15,17 @@
     </div>
 
     <div>
-      <div>
-        <label for="">Avatar</label>
-        {{form.avatar}}
-      </div>
-
-      <div>
-        <input type="checkbox" , name="remove_avatar" id="remove_avatar" />
-        <label for="remove_avatar">Remove Avatar</label>
-      </div>
+      <label for="">Upload Avatar</label>
+      {{form.avatar}}
     </div>
+
+    {% if form.avatar.value.url != '/images/default_images/avatar.svg' %}
+    <div>
+      <input type="checkbox" , name="remove_avatar" id="remove_avatar" />
+      <label for="remove_avatar">Remove Avatar</label>
+    </div>
+    {% endif %}
+
     <div>
       <label for="">Bio</label>
       {{form.bio}}
