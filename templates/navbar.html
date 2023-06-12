@@ -6,20 +6,25 @@
   </a>
 
   {% if request.user.is_authenticated %}
-  <div class="nav-profile">
+  <div class="nav-profile authenticated-profile">
+    <img src="{{request.user.avatar.url}}" alt="" />
     <a class="nav-user-profile" href="{% url 'user-profile' request.user.id%}">
       <p>{{request.user.name}}</p>
     </a>
+
     <a href="{% url 'logout' %}" class="login">
       <p>logout</p>
     </a>
   </div>
 
   {% else %}
-  <div class="nav-profile">
+  <!-- exclude on login page -->
+  {% block login_nav %}
+  <div class="nav-profile" id="nav-profile-login">
+    <img src="/static/images/default_images/avatar.svg" alt="" />
     <a href="{% url 'login' %}" class="login">
       <p>login</p>
     </a>
-    {% endif %}
   </div>
+  {% endblock login_nav %} {% endif %}
 </div>

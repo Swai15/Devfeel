@@ -1,47 +1,66 @@
-{% extends 'main.html' %}
+<!-- I had to add everything without inheritance because I was having issues overriding the block tags in my navbar.html to exclude the login and profile Icon from the login page -->
 
-<!-- block -->
-{% block content %}
-<main>
-  <form action="" method="POST">
-    {% csrf_token %}
-    <div>
-      <label for="email">Email</label>
-      <input type="text" name="email" id="email" />
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="nav-container">
+      <a href="/">
+        <h3>LOGO</h3>
+      </a>
     </div>
 
-    <div>
-      <label for="password">Password</label>
-      <input type="password" , name="password" id="password" />
-    </div>
+    <hr />
 
-    <div>
-      <button type="submit">submit</button>
-    </div>
-  </form>
+    <main>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" />
+        </div>
 
-  <!-- sign up -->
-  <div>
-    <p>Not already signed up?</p>
-    <a href="{% url 'register' %}">
-      <p>Register</p>
-    </a>
-  </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" , name="password" id="password" />
+        </div>
 
-  <!-- forgort passwords -->
-  {% if reset_password %}
-  <div>
-    <a href="{% url 'password_reset' %}">Forgot Password?</a>
-  </div>
-  {% endif %}
+        <div>
+          <button type="submit">submit</button>
+        </div>
+      </form>
 
-  <!-- error messages -->
-  {% if messages %}
-  <ul class="messages">
-    {% for message in messages %}
-    <li>{{message}}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-</main>
-{% endblock content %}
+      <!-- sign up -->
+      <div>
+        <p>Not already signed up?</p>
+        <a href="{% url 'register' %}">
+          <p>Register</p>
+        </a>
+      </div>
+
+      <!-- forgort passwords -->
+      {% if reset_password %}
+      <div>
+        <a href="{% url 'password_reset' %}">Forgot Password?</a>
+      </div>
+      {% endif %}
+
+      <!-- error messages -->
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </main>
+  </body>
+</html>

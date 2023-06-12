@@ -7,6 +7,7 @@
 .nav-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  height: 40px;
 }
 
 /* .nav-container div {
@@ -15,9 +16,22 @@
 
 .nav-profile {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-self: end;
+  width: 170px;
+}
 
+.authenticated-profile {}
+
+#nav-profile-login>img {
+  margin-left: 75px;
+  margin-top: 0px;
+}
+
+.nav-profile>img {
+  height: 28px;
+  border-radius: 50%;
+  margin-top: 2px;
 }
 
 .nav-profile a {
