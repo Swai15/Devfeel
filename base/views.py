@@ -87,7 +87,7 @@ def loginPage(request):
 
               reset_url += f'reset/{uid}/{token}/'
               reset_password = True
-          messages.error(request, 'Incorrect Password')
+          messages.error(request, 'The password does not match the email')
 
         else:
           messages.error(request, 'The email is not registered with us')  

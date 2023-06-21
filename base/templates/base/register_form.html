@@ -8,11 +8,13 @@
 
     <!-- fields -->
     {% for field in form %}
-    <div>
+    <div class="register-field">
       <label for="">{{field.label}}</label>
       {{field}}
     </div>
     {% endfor %}
+    <hr />
+
     <!-- <div>
       <label for="avatar">Profile Picture</label>
       <input type="file" name="avatar" id="avatar" />

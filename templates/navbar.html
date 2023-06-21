@@ -1,30 +1,66 @@
 <!-- logo   user, home button -->
 
 <div class="nav-container">
-  <a href="/">
-    <h3>LOGO</h3>
-  </a>
+  <div class="logo">
+    <a href="/">
+      <h3>LOGO</h3>
+    </a>
+  </div>
 
   {% if request.user.is_authenticated %}
-  <div class="nav-profile authenticated-profile">
-    <img src="{{request.user.avatar.url}}" alt="" />
-    <a class="nav-user-profile" href="{% url 'user-profile' request.user.id%}">
-      <p>{{request.user.name}}</p>
-    </a>
+  <div class="nav-profile authenticated">
+    <div class="dropdown-image">
+      <img class="nav-profile-image" src="{{request.user.avatar.url}}" alt="" />
+    </div>
 
-    <a href="{% url 'logout' %}" class="login">
+    <!-- Dropdown container -->
+    <div class="dropdown-container">
+      <!-- <div class="dropdown-profile">
+        <img src="/static/images/icons/profile.svg" alt="" />
+        <a href="{% url 'user-profile' request.user.id%}">Edit Profile</a>
+      </div>
+
+      <div class="dropdown-logout">
+        <img src="/static/images/icons/logout.svg" alt="" />
+        <a href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div> -->
+
+      <a class="dropdown-link" href="{% url 'user-profile' request.user.id%}">
+        <img class="dropdown-profile" src="/static/images/icons/profile.svg" alt="" />
+        <p>Edit Profile</p>
+        <span>></span>
+      </a>
+
+      <a class="dropdown-link" href="{% url 'logout'%}">
+        <img class="dropdown-logout" src="/static/images/icons/logout.svg" alt="" />
+        <p>Logout</p>
+        <span>></span>
+      </a>
+
+      <!-- <a class="nav-user-profile" href="{% url 'user-profile' request.user.id%}">
+      <p>{{request.user.name}}</p>
+    </a> -->
+
+      <!-- <a href="{% url 'logout' %}" class="login">
       <p>logout</p>
     </a>
+  </div> -->
+
+      {% else %}
+      <!-- exclude on login page -->
+      {% block login_nav %}
+      <div class="nav-profile unauthenticated" id="nav-profile-login">
+        <img src="/static/images/default_images/avatar.svg" alt="" />
+        <a href="{% url 'login' %}" class="login">
+          <p>login</p>
+        </a>
+      </div>
+      {% endblock login_nav %} {% endif %}
+    </div>
   </div>
 
-  {% else %}
-  <!-- exclude on login page -->
-  {% block login_nav %}
-  <div class="nav-profile" id="nav-profile-login">
-    <img src="/static/images/default_images/avatar.svg" alt="" />
-    <a href="{% url 'login' %}" class="login">
-      <p>login</p>
-    </a>
-  </div>
-  {% endblock login_nav %} {% endif %}
+  <!-- <hr /> -->
 </div>
+
+<script src="/static/js/navbar.js"></script>

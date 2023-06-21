@@ -1,4 +1,4 @@
-<!-- I had to add everything without inheritance because I was having issues overriding the block tags in my navbar.html to exclude the login and profile Icon from the login page -->
+<!-- Navbar and main components added without inheritance because of issues overriding the block tags in my navbar.html to exclude the login and profile Icon from the login page -->
 
 {% load static %}
 
@@ -18,49 +18,45 @@
       </a>
     </div>
 
-    <hr />
+    <main class="loginpage-body">
+      <div class="loginform-container">
+        <form action="" method="POST">
+          {% csrf_token %}
 
-    <main>
-      <form action="" method="POST">
-        {% csrf_token %}
-        <div>
-          <label for="email">Email</label>
-          <input type="text" name="email" id="email" />
+          <div class="login-welcome">
+            <h3>Welcome back!</h3>
+          </div>
+          <div>
+            <!-- <label for="email">Email</label> -->
+            <input class="login-email" placeholder="Email" type="text" name="email" id="email" autocomplete="off" />
+          </div>
+          <div>
+            <!-- <label for="password">Password</label> -->
+            <input placeholder="Password" class="login-password" type="password" , name="password" id="password" autocomplete="off" />
+          </div>
+          <div class="login-submit">
+            <button type="submit">LOG IN</button>
+          </div>
+        </form>
+        <!-- sign up -->
+        <div class="login-center">
+          <p>Not already signed up? <a href="{% url 'register' %}"> Register </a></p>
         </div>
-
-        <div>
-          <label for="password">Password</label>
-          <input type="password" , name="password" id="password" />
+        <!-- forgort passwords -->
+        {% if reset_password %}
+        <div class="login-center">
+          <a href="{% url 'password_reset' %}">Forgot Password?</a>
         </div>
-
-        <div>
-          <button type="submit">submit</button>
-        </div>
-      </form>
-
-      <!-- sign up -->
-      <div>
-        <p>Not already signed up?</p>
-        <a href="{% url 'register' %}">
-          <p>Register</p>
-        </a>
+        {% endif %}
+        <!-- error messages -->
+        {% if messages %}
+        <ul class="login-messages">
+          {% for message in messages %}
+          <li>{{message}}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </div>
-
-      <!-- forgort passwords -->
-      {% if reset_password %}
-      <div>
-        <a href="{% url 'password_reset' %}">Forgot Password?</a>
-      </div>
-      {% endif %}
-
-      <!-- error messages -->
-      {% if messages %}
-      <ul class="messages">
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
     </main>
   </body>
 </html>

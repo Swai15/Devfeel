@@ -10,14 +10,14 @@
 
   <!-- create and search posts -->
   <div class="create-search">
-    <div>
-      <a href="{% url 'create-post' %}">create post</a>
+    <div class="create-post">
+      <a href="{% url 'create-post' %}">create post +</a>
     </div>
 
     <div class="search-posts">
-      <form action="{% url 'home' %}">
+      <form class="search-form" action="{% url 'home' %}">
         <input name="search" type="search" id="search-home" placeholder="search" />
-        <button type="submit">Search</button>
+        <img class="search-icon" src="/static/images/icons/search.svg" alt="">
       </form>
     </div>
   </div>
@@ -28,7 +28,7 @@
   </div>
   {%endif%}
 
-  <!-- body posts -->
+  <!-- BODY POSTS-->
   <div class="posts-container">
     <!-- posts -->
     {% for post in page_obj %}
@@ -84,5 +84,7 @@
     {% endif %}
   </div>
 </main>
+
+<script src="/static/js/index.js"></script>
 
 {% endblock content %}
