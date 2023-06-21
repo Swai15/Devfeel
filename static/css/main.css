@@ -258,8 +258,6 @@ a:link {
   display: flex;
   justify-content: center;
   margin-top: 150px;
-
-  /* height: 100vh; */
   height: calc(100vh - var(--nav-height));
 }
 
@@ -271,10 +269,11 @@ a:link {
   justify-content: center;
 }
 
-.login-welcome {
+.login-header {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .loginform-container input {
@@ -282,10 +281,14 @@ a:link {
   height: 40px;
 }
 
+.login-submit {
+  margin-top: 15px;
+}
+
 .login-submit button {
   border: none;
   background-color: #387d8669;
-  height: 20px;
+  height: 30px;
   width: 70px;
   cursor: pointer;
 }
@@ -328,16 +331,72 @@ input:-webkit-autofill:active {
 
 
 /* REGISTERATION PAGE*/
+.registration-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.registration-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - var(--nav-height));
+  ;
+}
+
+.registration-container {
+  width: 600px;
+  height: 500px;
+  background-color: #e4e4e4;
+  margin-bottom: 30px;
+}
+
+.register-field {
+  display: grid;
+  grid-template-columns: auto;
+}
 
 .register-field input {
+  width: auto;
   border: none;
   border-bottom: 1px solid rgb(77, 77, 77);
+  height: 30px;
 }
 
 .register-field input:focus {
+  width: auto;
   outline: none;
   border-bottom: 1px solid rgb(77, 77, 77);
 }
+
+.registration-messages {
+  list-style: none;
+  color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20px
+    /* align-items: center; */
+}
+
+.registration-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.registration-submit button {
+  border: none;
+  background-color: #387d8669;
+  width: 70px;
+  height: 25px;
+  border-radius: 2px;
+}
+
+
 
 
 

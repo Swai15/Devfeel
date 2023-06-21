@@ -2,35 +2,32 @@
 
 <!-- start bod -->
 {% block content %}
-<main>
-  <form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <!-- fields -->
-    {% for field in form %}
-    <div class="register-field">
-      <label for="">{{field.label}}</label>
-      {{field}}
+<main class="registration-body">
+  <div class="registration-container">
+    <div class="registration-header">
+      <h2>Create an Account</h2>
     </div>
-    {% endfor %}
-    <hr />
-
-    <!-- <div>
-      <label for="avatar">Profile Picture</label>
-      <input type="file" name="avatar" id="avatar" />
-    </div> -->
-
-    <button type="submit">Register</button>
-  </form>
-
-  <div>
-    {% if messages %}
-    <ul>
-      {% for message in messages %}
-      <li>{{message}}</li>
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <!-- fields -->
+      {% for field in form %}
+      <div class="register-field">
+        <label for="">{{field.label}}</label>
+        {{field}}
+      </div>
       {% endfor %}
-    </ul>
-    {% endif %}
+
+      <div class="registration-submit"><button type="submit">Register</button></div>
+    </form>
+    <div>
+      {% if messages %}
+      <ul class="messages registration-messages">
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
   </div>
 </main>
 

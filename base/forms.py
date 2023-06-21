@@ -18,6 +18,7 @@ class RegisterForm(UserCreationForm):
     labels = {
       'name' : 'Username'
     }
+    
 
 class CreatePostForm(forms.ModelForm):
   post_image = ImageField(widget=FileInput)
