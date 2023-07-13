@@ -145,13 +145,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Body format text
-# CKEDITOR_CONFIGS = {
-#     'default': {
-#         'toolbar': None,
-#         # 'height': 300,
-#         # 'width': '100%',
-#     },
-# }
+CKEDITOR_CONFIGS = {
+    'default': {
+        # 'toolbar': 'Basic',
+        # 'height': 200,
+        'width': '700px',
+        
+    },
+}
 
 # CKEDITOR_CONFIGS = {
 #     'awesome_ckeditor': {

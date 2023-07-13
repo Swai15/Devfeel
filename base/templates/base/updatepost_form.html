@@ -2,42 +2,45 @@
 <!-- start block -->
 {% block content %}
 <main>
-  <form action="" method="POST" enctype="multipart/form-data" id="update-post-form">
-    {% csrf_token %}
-
-    <!-- start fields -->
-    {{form.media}}
-    <div>
-      <label for="topic"></label>
-      {{form.topic}}
+  <div class="edit-post-parent">
+    <div class="edit-post-header">
+      <h3>Edit post</h3>
     </div>
-
-    <div>
-      <label for="description"></label>
-      {{form.description}}
-    </div>
-
-    <div>
-      <label for="body"></label>
-      {{form.body}}
-    </div>
-
-    <div>
-      <label for="{{form.post_image.id_for_label}}">Change post image: </label>
-      {{form.post_image}}
-    </div>
-
-    {% if form.post_image.value.url != '/images/default_images/post_default.jpg' %}
-    <div>
-      <input type="checkbox" , name="remove_post_image" id="remove_post_image" />
-      <label for="remove_post_image">Remove post image</label>
-    </div>
-    {% endif %}
-
-    <!-- endfields  -->
-    <a href="{{ request.META.HTTP_REFERER }}">Cancel</a>
-    <button type="submit" id="editpost-btn">Edit</button>
-  </form>
+    <form action="" method="POST" enctype="multipart/form-data" id="update-post-form">
+      {% csrf_token %}
+      <!-- start fields -->
+      {{form.media}}
+      <div class="edit-post-container">
+        <div>
+          <label for="topic">Title</label>
+          {{form.topic}}
+        </div>
+        <div>
+          <label for="description">Description</label>
+          {{form.description}}
+        </div>
+        <div>
+          <label for="body">Content</label>
+          {{form.body}}
+        </div>
+        <div>
+          <label for="{{form.post_image.id_for_label}}">Change post image: </label>
+          {{form.post_image}}
+        </div>
+        {% if form.post_image.value.url != '/images/default_images/post_default.jpg' %}
+        <div class="edit-post-checkbox">
+          <input type="checkbox" , name="remove_post_image" id="remove_post_image" />
+          <label for="remove_post_image">Remove post image</label>
+        </div>
+        {% endif %}
+      </div>
+      <!-- endfields  -->
+      <div class="edit-post-button">
+        <a href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+        <button type="submit" id="editpost-btn">Edit</button>
+      </div>
+    </form>
+  </div>
 
   <script src="{% static 'js/config.js' %}"></script>
   <!-- <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script> -->

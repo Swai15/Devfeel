@@ -4,51 +4,55 @@
 {% block content %}
 <main>
   <div class="user-profile">
-    <div class="user-profile-head">
-      <div class="user-profile-image">
+    <div class="user-profile-border-container">
+      <div class="user-profile-head-container">
+        <div class="user-profile-image">
+          {% if request.user.is_authenticated %}
+          <img src="{{user.avatar.url}}" alt="Profile Picture" />
+          {% else %}
+          <img src="{% static 'images/default_images/avatar.svg' %}" alt="" />
+          {% endif %}
+        </div>
+        <div>
+          <h3>{{user.name}}</h3>
+        </div>
         {% if request.user.is_authenticated %}
-        <img src="{{user.avatar.url}}" alt="Profile Picture" />
-        {% else %}
-        <img src="{% static 'images/default_images/avatar.svg' %}" alt="" />
+        <div class="user-profile-edit">
+          <a href="{% url 'edit-user-profile' user.id%}">
+            <div>Edit Profile</div>
+          </a>
+        </div>
         {% endif %}
+        <div>
+          <p>{{user.bio}}</p>
+        </div>
       </div>
-
-      <div class="user-profile-edit">
-        <a href="{% url 'edit-user-profile' user.id%}">
-          <div>Edit Profile</div>
-        </a>
-      </div>
-
-      <div>
-        <h3>{{user.name}}</h3>
-      </div>
-      <div>
-        <p>{{user.bio}}</p>
-      </div>
-      <hr />
-
-      <div class="search-posts">
-        <form action="{% url 'user-profile' user.id %}">
-          <input name="search" type="search" id="search-home" placeholder="search" />
-          <button type="submit">Search</button>
-        </form>
-      </div>
-
-      {% if request.GET.search %}
-      <div class="search-results-header">
-        <p>Results for <span>'{{request.GET.search}}'</span></p>
-        <a href="{% url 'user-profile' user.id %}">Show all</a>
-      </div>
-      {%else%}
-      <div>
-        <h3>Posts</h3>
-      </div>
-      {%endif%}
     </div>
+
+    <!-- <hr class="user-profile-hr" /> -->
+
+    <div class="search-posts">
+      <form class="search-form" action="{% url 'user-profile' user.id %}">
+        <input name="search" type="search" id="search-home" placeholder="search" />
+        <img class="search-icon" src="/static/images/icons/search.svg" alt="" />
+      </form>
+    </div>
+
+    {% if request.GET.search %}
+    <div class="search-results-header">
+      <p>Results for <span>'{{request.GET.search}}'</span></p>
+      <a href="{% url 'user-profile' user.id %}">Show all</a>
+    </div>
+    {%else%}
+    <div class="user-posts-header">
+      <h3>Posts</h3>
+    </div>
+    {%endif%}
+
     <div class="user-profile-posts-container">
-      <div>
+      <div class="user-profile-center-posts">
         {% for post in posts %}
-        <div class="user-profile post">
+        <div class="user-profile-post">
           <a href="{% url 'post-details' pk=post.id %}">
             <h3>{{post.topic}}</h3>
           </a>
@@ -60,4 +64,7 @@
     </div>
   </div>
 </main>
+
+<script src="/static/js/searchPosts.js"></script>
+
 {% endblock content %}

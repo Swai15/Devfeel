@@ -2,41 +2,34 @@
 <!-- start block -->
 {% block content %}
 <main>
-  <form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <!-- start for -->
-    <!-- {{form.media}} {{form.as_p}} -->
-    <!-- {% for field in form %}
-    <div>
-      <label for="">{{field.label}}</label>
-      {{field}}
+  <div class="create-post-parent">
+    <div class="create-post-header">
+      <h3>Create a post</h3>
     </div>
-    {% endfor %} -->
-
-    <div>
-      <label for="">Topic</label>
-      {{form.topic}}
-    </div>
-
-    <div>
-      <label for="">Description</label>
-      {{form.description}}
-    </div>
-    <div>
-      <label for="">Body</label>
-      {{form.body}}
-    </div>
-    <div>
-      <label for="">Upload a post image:</label>
-      {{form.post_image}}
-    </div>
-    <div></div>
-
-    {{form.media}}
-
-    <button type="submit">submit</button>
-  </form>
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="create-post-container">
+        <div>
+          <label for="">Title</label>
+          {{form.topic}}
+        </div>
+        <div>
+          <label for="">Description</label>
+          {{form.description}}
+        </div>
+        <div id="editor-container">
+          <label for="">Content</label>
+          {{form.body}}
+        </div>
+        <div>
+          <label for="">Upload a post image:</label>
+          {{form.post_image}}
+        </div>
+      </div>
+      {{form.media}}
+      <div class="create-post-button"><button type="submit">Post</button></div>
+    </form>
+  </div>
 
   <script src="{% static 'js/config.js' %}"></script>
   <!-- <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script> -->

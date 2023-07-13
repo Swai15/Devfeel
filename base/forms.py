@@ -22,6 +22,7 @@ class RegisterForm(UserCreationForm):
 
 class CreatePostForm(forms.ModelForm):
   post_image = ImageField(widget=FileInput)
+  
   class Meta:
     model = Post
     fields = ['topic', 'description', 'body', 'post_image']

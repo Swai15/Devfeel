@@ -2,16 +2,23 @@
 
 <!-- start block -->
 {% block content %}
-<main>
-  <div>
-    <div class="post-topic">
-      <h3>@{{post.topic}}</h3>
-      <a href="{% url 'user-profile' post.author.id %}"><small>{{post.author.name}}</small></a>
+<main class="expand-post-page">
+  <div class="expand-post-container">
+    <div class="post-author">
+      <div>
+        <img class="post-author-image" src="{{post.author.avatar.url}}" alt="" />
+      </div>
+
+      <div class="post-author-date">
+        <a href="{% url 'user-profile' post.author.id %}">{{post.author.name}}</a>
+
+        <p>{{post.post_date|date:"M d"}}</p>
+      </div>
     </div>
 
-    <div class="post-description">
-      <h4>{{post.description}}</h4>
-      <small>{{post.post_date}} </small>
+    <div class="post-topic">
+      <h3>{{post.topic}}</h3>
+      <!-- <h4>{{post.description}}</h4> -->
     </div>
     {% if request.user == post.author %}
     <div>
@@ -26,7 +33,7 @@
     <!-- LIKES -->
     <div>
       {% if request.user.is_authenticated %}
-      <button class="like-button" data-post-id="{{post.id}}">
+      <button class="post-like-button" data-post-id="{{post.id}}">
         {% if post|is_post_liked:request.user %}
 
         <!-- gap -->
@@ -42,31 +49,53 @@
       </span>
     </div>
   </div>
-  <hr />
+  <!-- <hr /> -->
 
   <!-- COMMENTS form -->
   {% if request.user.is_authenticated %}
-  <form action="" id="comment-form" method="POST">
-    {% csrf_token %}
-
-    <div>
-      <textarea name="comment-text" cols="50" rows="3" placeholder="Write a comment..."></textarea>
-      <br />
-      <button type="submit">Submit</button>
+  <div class="comment-form-container">
+    <div class="input-comment-avatar">
+      <img src="{{request.user.avatar.url}}" alt="" />
     </div>
-  </form>
+
+    <form action="" id="comment-form" method="POST">
+      {% csrf_token %}
+      <div>
+        <textarea name="comment-text" cols="50" rows="3" placeholder="Write a comment..."></textarea>
+        <br />
+        <button class="comment-button" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
   {% endif %}
 
   <!-- Comments display -->
   <div class="comment-section">
     {% for comment in post_comments %}
     <div class="comment">
-      <p>{{comment.content}}</p>
+      <div class="comment-user-avatar">
+        <img src="{{comment.user.avatar.url}}" alt="" />
+      </div>
 
-      <small>By: {{comment.user.name}}</small>
-      {% if request.user == comment.user %}
-      <a href="{% url 'delete-comment' comment.id %}">delete</a>
-      {% endif %}
+      <div class="comment-content">
+        <div class="comment-content-main">
+          <div class="comment-content-main-name">
+            <a href="{% url 'user-profile' comment.user.id %}">
+              <p>{{comment.user.name}}</p>
+            </a>
+          </div>
+
+          <div class="comment-content-main-content">
+            <p>{{comment.content}}</p>
+          </div>
+        </div>
+
+        {% if request.user == comment.user %}
+        <div class="delete-comment">
+          <a href="{% url 'delete-comment' comment.id %}"><img src="/static/images/icons/delete.svg" alt="" /></a>
+        </div>
+        {% endif %}
+      </div>
     </div>
     {% endfor %}
   </div>
