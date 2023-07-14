@@ -13,6 +13,7 @@ button {
 
 
 /* NAVBAR */
+
 .nav-container {
   /* width: auto; */
   margin: 0;
@@ -463,10 +464,13 @@ input:-webkit-autofill:active {
   /* border: 1px solid black; */
   width: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
 
+}
+
+.create-post-parent-child {
+  margin: 0px auto 0px auto;
 }
 
 .create-post-header, .edit-post-header {
@@ -480,7 +484,7 @@ input:-webkit-autofill:active {
   flex-direction: column;
   /* border: 1px black solid; */
   background: rgb(219, 219, 219);
-  width: 730px;
+  max-width: 730px;
 }
 
 .create-post-container div, .edit-post-container div {
@@ -492,7 +496,7 @@ input:-webkit-autofill:active {
 
 .create-post-container div input, .edit-post-container div input {
   height: 25px;
-  width: 700px;
+  max-width: 700px;
 }
 
 .edit-post-checkbox {

@@ -3,32 +3,35 @@
 {% block content %}
 <main>
   <div class="create-post-parent">
-    <div class="create-post-header">
-      <h3>Create a post</h3>
-    </div>
-    <form action="" method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      <div class="create-post-container">
-        <div>
-          <label for="">Title</label>
-          {{form.topic}}
-        </div>
-        <div>
-          <label for="">Description</label>
-          {{form.description}}
-        </div>
-        <div id="editor-container">
-          <label for="">Content</label>
-          {{form.body}}
-        </div>
-        <div>
-          <label for="">Upload a post image:</label>
-          {{form.post_image}}
-        </div>
+    <div class="create-post-parent-child">
+      <div class="create-post-header">
+        <h3>Create a post</h3>
       </div>
-      {{form.media}}
-      <div class="create-post-button"><button type="submit">Post</button></div>
-    </form>
+
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="create-post-container">
+          <div>
+            <label for="">Title</label>
+            {{form.topic}}
+          </div>
+          <div>
+            <label for="">Description</label>
+            {{form.description}}
+          </div>
+          <div id="editor-container">
+            <label for="">Content</label>
+            {{form.body}}
+          </div>
+          <div>
+            <label for="">Upload a post image:</label>
+            {{form.post_image}}
+          </div>
+        </div>
+        {{form.media}}
+        <div class="create-post-button"><button type="submit">Post</button></div>
+      </form>
+    </div>
   </div>
 
   <script src="{% static 'js/config.js' %}"></script>
