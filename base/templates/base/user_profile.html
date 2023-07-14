@@ -51,7 +51,7 @@
 
     <div class="user-profile-posts-container">
       <div class="user-profile-center-posts">
-        {% for post in posts %}
+        {% if posts %} {% for post in posts %}
         <div class="user-profile-post">
           <a href="{% url 'post-details' pk=post.id %}">
             <h3>{{post.topic}}</h3>
@@ -59,7 +59,9 @@
           <h4>{{post.description}}</h4>
           <p>{{post.body|safe}}</p>
         </div>
-        {% endfor %}
+        {% endfor %} {% else %}
+        <p>This user does not have any posts</p>
+        {% endif %}
       </div>
     </div>
   </div>
