@@ -6,14 +6,14 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 
 class User(AbstractUser):
-  name = models.CharField(max_length=200, null=True)
+  name = models.CharField(max_length=200, null=True, unique=True)
   email = models.EmailField(unique=True, null=True)
   bio = models.TextField(blank=True ,null=True)
   failed_login_attempts = models.IntegerField(default=0)
   avatar = models.ImageField(null=True,default='default_images/avatar.svg', upload_to='avatars/')
 
   USERNAME_FIELD = 'email'
-  REQUIRED_FIELDS = ['username']
+  REQUIRED_FIELDS = ['name']
   
 
 class Post(models.Model):

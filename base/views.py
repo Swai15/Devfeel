@@ -54,8 +54,6 @@ def home(request):
 
 
 def loginPage(request):
-
-
     if request.user.is_authenticated:
       return redirect('home')
 
@@ -75,7 +73,7 @@ def loginPage(request):
           user.failed_login_attempts += 1
           user.save()
 
-          if user.failed_login_attempts >=2:
+          if user.failed_login_attempts >=1:
               token_generator = default_token_generator
               uid = user.pk
               token = token_generator.make_token(user)
@@ -107,6 +105,7 @@ def logoutPage(request):
 
 def registerUser(request):
   form = RegisterForm()
+  user = User
   if request.method == 'POST':
     form = RegisterForm(request.POST)
     if form.is_valid():
