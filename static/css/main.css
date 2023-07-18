@@ -459,7 +459,92 @@ input:-webkit-autofill:active {
   margin: 0;
 }
 
-/* CREATE POST */
+/* EDIT PROFILE */
+.edit-profile-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.edit-profile-container {
+  background-color: #52525233;
+  /* border: 1px black solid; */
+  display: flex;
+  flex-direction: column;
+  max-width: 730px;
+  margin: 0 auto 0 auto;
+  border-radius: 2px;
+
+}
+
+.edit-profile-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-profile-container>div {
+  /* border: 1px solid rgba(0, 0, 0, 0.144); */
+}
+
+.edit-profile-field input {
+  width: 95%;
+}
+
+.editprofile-input-field input {
+  height: 25px;
+}
+
+.editprofile-field-avatar {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-left: 11px;
+}
+
+.editprofile-field-avatar label {
+  display: block;
+}
+
+.editprofile-field-avatar input {
+  vertical-align: middle;
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  right: 75%;
+
+}
+
+
+.edit-profile-bio textarea {
+  width: 95%;
+  height: 60px;
+}
+
+.edit-profile-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-profile-submit button {
+  height: 30px;
+  width: 45px;
+  background-color: #0076ac52;
+}
+
+.edit-profile-submit a {
+  font-size: 17px;
+  color: black;
+  padding: 4px;
+  border-radius: 3px;
+  background-color: rgba(221, 95, 95, 0.589);
+}
+
+
+
+/* CREATE and EDIT POST */
 .create-post-parent, .edit-post-parent {
   /* border: 1px solid black; */
   width: auto;
@@ -485,6 +570,7 @@ input:-webkit-autofill:active {
   /* border: 1px black solid; */
   background: rgb(219, 219, 219);
   max-width: 730px;
+  margin: 0 auto 0 auto;
 }
 
 .create-post-container div, .edit-post-container div {
@@ -507,15 +593,17 @@ input:-webkit-autofill:active {
 
 .edit-post-checkbox input {
 
-  vertical-align: middle;
+  /* vertical-align: middle; */
   position: absolute;
-  height: 20px;
-  width: 20px;
-  right: 200px;
+  height: 18px;
+  width: 18px;
+  right: 70%;
+  /* bottom: 1%; */
 }
 
 .edit-post-checkbox label {
-  display: block;
+  /* display: block; */
+  margin-top: 8px;
 }
 
 .edit-post-button {

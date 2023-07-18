@@ -4,36 +4,43 @@
     {% csrf_token %}
 
     <!-- fields -->
-    <div>
-      <label for="">Username</label>
-      {{form.name}}
+    <div class="edit-profile-header">
+      <h3>Edit User Profile</h3>
     </div>
+    <div class="edit-profile-container">
+      <div class="edit-profile-field editprofile-input-field">
+        <div><label for="">Username</label></div>
+        <div>{{form.name}}</div>
+      </div>
 
-    <div>
-      <label for="">Email</label>
-      {{form.email}}
+      <div class="edit-profile-field editprofile-input-field">
+        <div><label for="">Email</label></div>
+        <div>{{form.email}}</div>
+      </div>
+
+      <div class="edit-profile-field">
+        <div><label for="">Upload Avatar</label></div>
+        <div>{{form.avatar}}</div>
+      </div>
+
+      <div class="edit-profile-field">
+        <div><label for="">Bio</label></div>
+        <div class="edit-profile-bio">{{form.bio}}</div>
+      </div>
+
+      {% if form.avatar.value.url != '/images/default_images/avatar.svg' %}
+      <div class="edit-profile-field editprofile-field-avatar">
+        <label for="remove_avatar">Remove Avatar</label>
+        <input type="checkbox" , name="remove_avatar" id="remove_avatar" />
+      </div>
+      {% endif %}
+
+      <!-- end fields -->
     </div>
-
-    <div>
-      <label for="">Upload Avatar</label>
-      {{form.avatar}}
+    <div class="edit-profile-submit">
+      <button type="submit">Edit</button>
+      <a href="{% url 'user-profile' user.id %}">cancel</a>
     </div>
-
-    {% if form.avatar.value.url != '/images/default_images/avatar.svg' %}
-    <div>
-      <input type="checkbox" , name="remove_avatar" id="remove_avatar" />
-      <label for="remove_avatar">Remove Avatar</label>
-    </div>
-    {% endif %}
-
-    <div>
-      <label for="">Bio</label>
-      {{form.bio}}
-    </div>
-    <!-- end fields -->
-
-    <button type="submit">Edit</button>
-    <a href="{% url 'user-profile' user.id %}">cancel</a>
   </form>
 </main>
 {% endblock content %}
