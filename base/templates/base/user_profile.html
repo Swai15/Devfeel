@@ -7,11 +7,7 @@
     <div class="user-profile-border-container">
       <div class="user-profile-head-container">
         <div class="user-profile-image">
-          {% if request.user.is_authenticated %}
           <img src="{{user.avatar.url}}" alt="Profile Picture" />
-          {% else %}
-          <img src="{% static 'images/default_images/avatar.svg' %}" alt="" />
-          {% endif %}
         </div>
         <div>
           <h3>{{user.name}}</h3>
@@ -33,7 +29,7 @@
 
     <div class="search-posts">
       <form class="search-form" action="{% url 'user-profile' user.id %}">
-        <input name="search" type="search" id="search-home" placeholder="search" />
+        <input name="search" type="search" id="search-home" placeholder="search for topic..." />
         <img class="search-icon" src="/static/images/icons/search.svg" alt="" />
       </form>
     </div>
@@ -53,11 +49,14 @@
       <div class="user-profile-center-posts">
         {% if posts %} {% for post in posts %}
         <div class="user-profile-post">
-          <a href="{% url 'post-details' pk=post.id %}">
-            <h3>{{post.topic}}</h3>
-          </a>
+          <div>
+            <a href="{% url 'post-details' pk=post.id %}">
+              <h3>{{post.topic}}</h3>
+            </a>
+          </div>
+
           <h4>{{post.description}}</h4>
-          <p>{{post.body|safe}}</p>
+          <p>{{post.body|safe|truncatewords:60}}</p>
         </div>
         {% endfor %} {% else %}
         <p>This user does not have any posts</p>

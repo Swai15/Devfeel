@@ -3,7 +3,7 @@
 <div class="nav-container">
   <div class="logo">
     <a href="/">
-      <h3>LOGO</h3>
+      <h3>DEVFEEL</h3>
     </a>
   </div>
 
@@ -15,17 +15,6 @@
 
     <!-- Dropdown container -->
     <div class="dropdown-container">
-      <!-- <div class="dropdown-profile">
-        <img src="/static/images/icons/profile.svg" alt="" />
-        <a href="{% url 'user-profile' request.user.id%}">Edit Profile</a>
-      </div>
-
-      <div class="dropdown-logout">
-        <img src="/static/images/icons/logout.svg" alt="" />
-        <a href="{% url 'logout' %}">Logout</a>
-      </div>
-    </div> -->
-
       <a class="dropdown-link" href="{% url 'user-profile' request.user.id%}">
         <img class="dropdown-profile" src="/static/images/icons/profile.svg" alt="" />
         <p>Edit Profile</p>
@@ -37,15 +26,6 @@
         <p>Logout</p>
         <span>></span>
       </a>
-
-      <!-- <a class="nav-user-profile" href="{% url 'user-profile' request.user.id%}">
-      <p>{{request.user.name}}</p>
-    </a> -->
-
-      <!-- <a href="{% url 'logout' %}" class="login">
-      <p>logout</p>
-    </a>
-  </div> -->
 
       {% else %}
       <!-- exclude on login page -->

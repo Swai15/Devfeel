@@ -20,12 +20,12 @@
 
     <main class="loginpage-body">
       <div class="loginform-container">
+        <div class="login-header">
+          <h2>Welcome back!</h2>
+        </div>
+
         <form action="" method="POST">
           {% csrf_token %}
-
-          <div class="login-header">
-            <h2>Welcome back!</h2>
-          </div>
           <div>
             <!-- <label for="email">Email</label> -->
             <input class="login-email" placeholder="Email" type="text" name="email" id="email" autocomplete="off" />
