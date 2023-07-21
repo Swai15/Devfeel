@@ -10,15 +10,15 @@
       </div>
 
       <div class="post-author-date">
-        <a href="{% url 'user-profile' post.author.id %}">{{post.author.name}}</a>
+        <a class="username-font" href="{% url 'user-profile' post.author.id %}">{{post.author.name}}</a>
 
         <p>{{post.post_date|date:"M d"}}</p>
       </div>
 
       {% if request.user == post.author %}
       <div class="post-author-edit">
-        <a href="{% url 'update-post' post.id %}">edit</a>
-        <a href="{% url 'delete-post' post.id%}">delete</a>
+        <a class="post-edit" href="{% url 'update-post' post.id %}"><img src="/static/images/icons/edit.svg" alt="" /></a>
+        <a class="post-delete" href="{% url 'delete-post' post.id%}"><img src="/static/images/icons/delete.svg" alt="" /></a>
       </div>
       {% endif %}
     </div>
@@ -63,7 +63,7 @@
     <form action="" id="comment-form" method="POST">
       {% csrf_token %}
       <div>
-        <textarea name="comment-text" cols="50" rows="3" placeholder="Write a comment..."></textarea>
+        <textarea id="comment-input" name="comment-text" cols="50" rows="3" placeholder="Write a comment..."></textarea>
         <br />
         <div class="comment-button-align">
           <button class="comment-button" type="submit">Submit</button>
@@ -75,7 +75,7 @@
 
   <!-- Comments display -->
   <div class="comment-section">
-    {% for comment in post_comments %}
+    {% if post_comments %} {% for comment in post_comments %}
     <div class="comment">
       <div class="comment-user-avatar">
         <img src="{{comment.user.avatar.url}}" alt="" />
@@ -84,9 +84,10 @@
       <div class="comment-content">
         <div class="comment-content-main">
           <div class="comment-content-main-name">
-            <a href="{% url 'user-profile' comment.user.id %}">
-              <p>{{comment.user.name}}</p>
-            </a>
+            <p class="description-font">
+              <a href="{% url 'user-profile' comment.user.id %}"> {{comment.user.name}} </a>
+            </p>
+            <p></p>
           </div>
 
           <div class="comment-content-main-content">
@@ -101,7 +102,11 @@
         {% endif %}
       </div>
     </div>
-    {% endfor %}
+    {% endfor %} {% else %}
+    <div class="no-comment">
+      <p>Be the first to comment...</p>
+    </div>
+    {% endif %}
   </div>
 
   <!-- <div class="comment-section">
@@ -114,6 +119,6 @@
   </div> -->
 
   <script src="/static/js/like.js"></script>
-  <!-- <script src="/static/js/comment.js"></script> -->
+  <script src="/static/js/comment.js"></script>
 </main>
 {% endblock content %}

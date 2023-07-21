@@ -5,12 +5,15 @@
 <main>
   <form action="" method="POST">
     {% csrf_token %}
-    <div>
-      <p>Are you sure you want to delete</p>
-    </div>
-    <div>
-      <button type="submit">Confirm</button>
-      <a href="{{request.META.HTTP_REFERER}}">Back</a>
+    <div class="delete-post-container">
+      <div class="delete-topic">
+        <p>Are you sure you want to delete <span>'{{post.topic}}'</span></p>
+      </div>
+
+      <div class="delete-confirm-back">
+        <button type="submit">Confirm</button>
+        <a href="{{request.META.HTTP_REFERER}}"><button type="button">Back</button></a>
+      </div>
     </div>
   </form>
 </main>

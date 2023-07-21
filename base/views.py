@@ -183,7 +183,7 @@ def deletePost(request, pk):
       post.delete()
       return redirect('home')
 
-    return render(request, 'base/delete_post.html')
+    return render(request, 'base/delete_post.html', {'post': post})
 
 
 def userProfile(request, pk):

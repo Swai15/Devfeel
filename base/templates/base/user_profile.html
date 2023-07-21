@@ -9,13 +9,13 @@
         <div class="user-profile-image">
           <img src="{{user.avatar.url}}" alt="Profile Picture" />
         </div>
-        <div>
-          <h3>{{user.name}}</h3>
+        <div class="user-profile-username">
+          <h3 class="username-font">{{user.name}}</h3>
         </div>
         {% if request.user.is_authenticated %}
         <div class="user-profile-edit">
           <a href="{% url 'edit-user-profile' user.id%}">
-            <div>Edit Profile</div>
+            <p class="userprofile-edit body-font">Edit Profile</p>
           </a>
         </div>
         {% endif %}
@@ -27,7 +27,7 @@
 
     <!-- <hr class="user-profile-hr" /> -->
 
-    <div class="search-posts">
+    <div class="search-posts userprofile-search">
       <form class="search-form" action="{% url 'user-profile' user.id %}">
         <input name="search" type="search" id="search-home" placeholder="search for topic..." />
         <img class="search-icon" src="/static/images/icons/search.svg" alt="" />
@@ -40,7 +40,7 @@
       <a href="{% url 'user-profile' user.id %}">Show all</a>
     </div>
     {%else%}
-    <div class="user-posts-header">
+    <div class="user-posts-header topic-font">
       <h3>Posts</h3>
     </div>
     {%endif%}
@@ -51,11 +51,11 @@
         <div class="user-profile-post">
           <div>
             <a href="{% url 'post-details' pk=post.id %}">
-              <h3>{{post.topic}}</h3>
+              <h3 class="topic-font">{{post.topic}}</h3>
             </a>
           </div>
 
-          <h4>{{post.description}}</h4>
+          <h4 class="description-font">{{post.description}}</h4>
           <p>{{post.body|safe|truncatewords:60}}</p>
         </div>
         {% endfor %} {% else %}

@@ -11,12 +11,12 @@
   <!-- create and search posts -->
   <div class="create-search">
     <div class="create-post">
-      <a href="{% url 'create-post' %}">create post +</a>
+      <a href="{% url 'create-post' %}">create post </a>
     </div>
 
     <div class="search-posts">
       <form class="search-form" action="{% url 'home' %}">
-        <input name="search" type="search" id="search-home" placeholder="search" />
+        <input name="search" type="search" id="search-home" placeholder="search topic..." />
         <img class="search-icon" src="/static/images/icons/search.svg" alt="">
       </form>
     </div>
