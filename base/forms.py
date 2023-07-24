@@ -14,10 +14,8 @@ from .models import User, Post
 class RegisterForm(UserCreationForm):
   class Meta:
     model = User
-    fields = ['name', 'email', 'password1', 'password2']
-    labels = {
-      'name' : 'Username'
-    }
+    fields = ['username', 'email', 'password1', 'password2']
+
     
 
 class CreatePostForm(forms.ModelForm):

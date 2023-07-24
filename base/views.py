@@ -26,7 +26,7 @@ def home(request):
   search_posts = request.GET.get('search')
 
   if search_posts:
-    posts = Post.objects.filter(Q(topic__icontains=search_posts) | Q(author__name__icontains=search_posts)).order_by('-post_date')
+    posts = Post.objects.filter(Q(topic__icontains=search_posts) | Q(author__username__icontains=search_posts)).order_by('-post_date')
   else:
     posts = Post.objects.all().order_by('-post_date')
 
@@ -39,17 +39,6 @@ def home(request):
 
   return render(request, 'base/index.html', context)
 
-
-# def search(request):
-#   search_post = request.GET.get('search')
-#   if search_post:
-#     posts= Post.objects.filter(Q(topic__icontains=search_post) | Q(author__name__icontains=search_post))
-#   else:
-#     posts = Post.objects.all()
-
-
-#   context = {}
-#   return render(request, '', context)
 
 
 
@@ -110,7 +99,7 @@ def registerUser(request):
     form = RegisterForm(request.POST)
     if form.is_valid():
       user = form.save(commit=False)
-      user.name = user.name.lower()
+      user.username = user.username.lower()
       user.save()
       login(request, user)
       return redirect('home')

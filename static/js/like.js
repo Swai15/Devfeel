@@ -1,8 +1,10 @@
-const likeButton = document.querySelector(".like-button");
+const likeButton = document.querySelector(".post-like-button");
 
 likeButton.addEventListener("click",() => {
+  console.log('working');
   const postId = likeButton.dataset.postId;
   likePost(postId);
+
 });
 
 function likePost(postId) {
@@ -25,11 +27,13 @@ function likePost(postId) {
 
         likecount = parseInt(likeCount.textContent);
         if (data.action === "like") {
-          likeCount.textContent = `${likecount + 1} ${likecount === 1 ? "likes" : "like"}`;
+          likeCount.textContent = `${likecount + 1} ${likeCount === 1 ? "likes" : "like"}`;
           likeButton.textContent = "UnLike";
+          console.log('success');
         } else {
-          likeCount.textContent = `${likecount - 1} ${likecount === 1 ? "likes" : "like"} `;
+          likeCount.textContent = `${likecount - 1} ${likeCount === 1 ? "likes" : "like"} `;
           likeButton.textContent = "like";
+          console.log('success');
         }
       }
     });

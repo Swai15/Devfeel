@@ -54,5 +54,4 @@ const commentInput = document.getElementById('comment-input');
 
 firstComment.addEventListener('click',() => {
   commentInput.focus();
-  console.log("working");
 });

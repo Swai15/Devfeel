@@ -531,6 +531,10 @@ input:-webkit-autofill:active {
   grid-template-columns: auto;
 }
 
+.register-field label {
+  color: black;
+}
+
 .register-field input {
   width: auto;
   border: none;
@@ -1009,15 +1013,20 @@ input:-webkit-autofill:active {
 
 }
 
+/* 
 .post-like-button {
   height: var(--button-height);
   width: 40px;
   background-color: rgb(175, 216, 255);
-}
+  font-family: var(--body2-font);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.849);
+  font-size: 14px;
+} */
 
-.post-like-button:hover {
+/* .post-like-button:hover {
   background-color: rgb(146, 202, 255);
-}
+} */
 
 .comment-section {
   border: 1px solid rgba(54, 178, 194, 0.411);
