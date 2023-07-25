@@ -4,10 +4,29 @@ Devfeel is a unique blog app with a fresh perspective on the tech world. Unlike 
 
 ## Installation
 
-1. Clone the repository
+1. Clone the repository:
 
 ```bash
  git clone git@github.com:Swai15/Blog.git
   OR
  git clone https://github.com/Swai15/Blog.git
+```
+
+2. Create and activate a virtual environment:
+
+```bash
+python -m venv venv
+source venv/Scripts/activate
+```
+
+3. Install the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Run the development server:
+
+```bash
+python manage.py runserver
 ```
