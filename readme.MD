@@ -5,4 +5,7 @@ Devfeel is a unique blog app with a fresh perspective on the tech world. Unlike 
 ## Installation
 
 1. Clone the repository
-   `` git clone git@github.com:Swai15/Blog.git`<br>OR<br>git clone https://github.com/Swai15/Blog.git``
+
+```bash
+ git clone git@github.com:Swai15/Blog.git`<br>OR<br>git clone https://github.com/Swai15/Blog.git
+```
