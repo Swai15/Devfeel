@@ -30,7 +30,7 @@ def home(request):
   else:
     posts = Post.objects.all().order_by('-post_date')
 
-  paginator = Paginator(posts, 9)
+  paginator = Paginator(posts, 4)
 
   page_number = request.GET.get('page')
   page_obj = paginator.get_page(page_number)
