@@ -44,7 +44,7 @@
 
       {% endif %}
       <!-- like count -->
-      <span class="likes-display" id="like-count-{{post.id}}">
+      <span class="likes-display topic-font" id="like-count-{{post.id}}">
         {{post.likes.count}}
         <!-- if -->
         {% if post.likes.count == 1 %} like {% else %} likes {%endif%}

@@ -12,9 +12,15 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="nav-container">
+    <!-- <div class="nav-container">
       <a href="/">
         <h3>LOGO</h3>
+      </a>
+    </div> -->
+
+    <div id="login-form-logo" class="logo nav-container">
+      <a href="/">
+        <h3>DEVFEEL</h3>
       </a>
     </div>
 
@@ -44,8 +50,12 @@
         </div>
         <!-- forgort passwords -->
         {% if reset_password %}
-        <div class="login-center">
+        <div class="login-center forgot-password">
           <a href="{% url 'password_reset' %}">Forgot Password?</a>
+        </div>
+
+        <div class="reset-message">
+          <p>Reset password is also being fixed, kindly don't use me</p>
         </div>
         {% endif %}
         <!-- error messages -->
