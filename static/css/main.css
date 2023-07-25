@@ -1,16 +1,12 @@
 * {
   margin: 5px;
-  /* background: rgb(238, 238, 238); */
-  /* font-family: Abril Display, Georgia, serif; */
-  /* font-family: Helvetica, Arial, sans-serif; */
-  /* font-weight: lighter; */
   --logo-font: 'Bebas Neue', sans-serif;
   --headings-font: 'Tinos', serif;
   --body-font: 'Roboto', sans-serif;
   --body2-font: 'Inter', sans-serif;
   --username-font: 'Lato', sans-serif;
 
-  ;
+
 }
 
 p {
@@ -53,7 +49,6 @@ button {
 /* NAVBAR */
 
 .nav-container {
-  /* width: auto; */
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -218,7 +213,7 @@ a:link {
 .create-post {
   border: 1px solid rgba(46, 46, 46, 0.452);
   border-radius: 3px;
-  background-color: ;
+  /* background-color: ; */
   /* height: 20px; */
 }
 
