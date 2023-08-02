@@ -113,13 +113,25 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 # }
 
 # Postgress
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'devfeel',
+#         'USER': 'postgres',
+#         'PASSWORD': 'superuser',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
+# Postgress Supabase
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'devfeel',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'superuser',
-        'HOST': 'localhost',
+        'HOST': 'db.vgumuedrwiajiscgrefz.supabase.co',
         'PORT': '5432',
     }
 }
