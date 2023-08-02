@@ -819,6 +819,7 @@ input:-webkit-autofill:active {
   flex-direction: column;
   border: 1px rgba(116, 116, 116, 0.13) solid;
   background: rgb(255, 255, 255);
+  width: 90vw;
   max-width: 730px;
   margin: 0 auto 0 auto;
   border-radius: 5px;
@@ -851,17 +852,13 @@ input:-webkit-autofill:active {
 }
 
 .edit-post-checkbox input {
-
-  /* vertical-align: middle; */
   position: absolute;
   height: 18px;
   width: 18px;
   right: 70%;
-  /* bottom: 1%; */
 }
 
 .edit-post-checkbox label {
-  /* display: block; */
   margin-top: 8px;
 }
 
