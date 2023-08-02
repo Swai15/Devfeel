@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-# import dotenv
+import dotenv
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -133,7 +133,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'superuser',
+        'PASSWORD': 'superuserctrl',
         'HOST': 'db.vgumuedrwiajiscgrefz.supabase.co',
         'PORT': '5432',
     }

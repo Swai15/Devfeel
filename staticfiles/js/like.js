@@ -1,13 +1,14 @@
-const likeButton = document.querySelector(".like-button");
+const likeButton = document.querySelector(".post-like-button");
 
-likeButton.addEventListener("click",() => {
+likeButton.addEventListener("click", () => {
+  console.log("working");
   const postId = likeButton.dataset.postId;
   likePost(postId);
 });
 
 function likePost(postId) {
   const url = `/like-post/${postId}/`;
-  fetch(url,{
+  fetch(url, {
     method: "POST",
     credentials: "same-origin",
     headers: {
@@ -20,16 +21,18 @@ function likePost(postId) {
     })
     .then((data) => {
       if (data.success) {
-        const likeCount = document.querySelector(`#like-count-${postId}`);
-        const likeButton = document.querySelector(`.like-button[data-post-id="${postId}"]`);
+        let likeCount = document.querySelector(`#like-count-${postId}`);
+        let likeButton = document.querySelector(`.post-like-button[data-post-id="${postId}"]`);
 
         likecount = parseInt(likeCount.textContent);
         if (data.action === "like") {
-          likeCount.textContent = `${likecount + 1} ${likecount === 1 ? "likes" : "like"}`;
-          likeButton.textContent = "UnLike";
+          likeCount.textContent = `${likecount + 1} ${likeCount === 1 ? "likes" : "like"}`;
+          likeButton.textContent = "Unlike";
+          console.log("success");
         } else {
-          likeCount.textContent = `${likecount - 1} ${likecount === 1 ? "likes" : "like"} `;
+          likeCount.textContent = `${likecount - 1} ${likeCount === 1 ? "likes" : "like"} `;
           likeButton.textContent = "like";
+          console.log("success");
         }
       }
     });
