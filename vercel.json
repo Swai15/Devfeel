@@ -7,6 +7,10 @@
   ],
   "routes": [
     {
+      "src": "static/**",
+      "use": "@vercel/static"
+    },
+    {
       "src": "/static/(.*)",
       "dest": "static/$1"
     },
