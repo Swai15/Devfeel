@@ -6,7 +6,8 @@
     },
     {
       "src": "static/**",
-      "use": "@vercel/static"
+      "use": "@vercel/static",
+      "config": { "minify": false, "concatenate": false }
     }
   ],
   "routes": [
