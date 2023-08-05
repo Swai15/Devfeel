@@ -133,12 +133,12 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 # Postgress Supabase
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'superuserctrl',
-        'HOST': 'db.vgumuedrwiajiscgrefz.supabase.co',
-        'PORT': '5432',
+        'ENGINE': os.environ['ENGINE'],
+        'NAME': os.environ['NAME'],
+        'USER': os.environ['USER'],
+        'PASSWORD': os.environ['PASSWORD'],
+        'HOST': os.environ['HOST'],
+        'PORT': os.environ['PORT'],
     }
 }
 
