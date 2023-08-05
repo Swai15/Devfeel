@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dotenv
 from dotenv import load_dotenv
+import cloudinary_storage
 
 load_dotenv()
 
@@ -52,6 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary', 
+    'cloudinary_storage',
     'base',
     'ckeditor'
 ]
@@ -188,13 +191,14 @@ CKEDITOR_CONFIGS = {
     'default': {
         # 'toolbar': 'Basic',
         # 'height': 200,
-        'width': '100%',
-        
+        'width': '100%',        
     },
 }
 
-# CKEDITOR_CONFIGS = {
-#     'awesome_ckeditor': {
-#         'toolbar': 'Basic',
-#     },
-# }
+CLOUDINARY_STORAGE = {
+  'CLOUD_NAME': os.environ['CLOUD_NAME'],
+  'API_KEY' : os.environ['API_KEY'],
+  'API_SECRET': os.environ['API_SECRET']
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
