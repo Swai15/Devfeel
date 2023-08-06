@@ -10,7 +10,7 @@
       </div>
 
       <div class="post-author-date">
-        <a class="username-font" href="{% url 'user-profile' post.author.id %}">{{post.author.name}}</a>
+        <a class="username-font" href="{% url 'user-profile' post.author.id %}">{{post.author.username}}</a>
 
         <p>{{post.post_date|date:"M d"}}</p>
       </div>
@@ -85,7 +85,7 @@
         <div class="comment-content-main">
           <div class="comment-content-main-name">
             <p class="description-font">
-              <a href="{% url 'user-profile' comment.user.id %}"> {{comment.user.name}} </a>
+              <a href="{% url 'user-profile' comment.user.id %}"> {{comment.user.username}} </a>
             </p>
             <p></p>
           </div>
@@ -113,7 +113,7 @@
     {% for comment in comments %}
     <div class="comment">
       <p>{{comment.content}}</p>
-      <p>By: {{comment.user.name}}</p>
+      <p>By: {{comment.user.username}}</p>
     </div>
     {% endfor %}
   </div> -->
