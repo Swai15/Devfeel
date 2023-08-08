@@ -34,3 +34,9 @@ python manage.py runserver
 ## Features and bugs tracking
 
 For tracking the development progress, features, and bugs, I use Trello. You can find the Trello board for this project [here](https://trello.com/b/yyQSPjNm)
+
+## additional info for local setup.
+
+This project's postgres database has been hosted on [Supabase](https://supabase.com/). Comment out it's setup in setting and uncomment the default sqlite3 configuration to revert back to a local database.
+
+The images are stored [cloudinary](https://cloudinary.com/) comment out it's setup in settings to revert back to accepting media files in localhost.
