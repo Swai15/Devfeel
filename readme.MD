@@ -31,7 +31,7 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
-## Features and bugs tracking
+## Queued Updates/features
 
 For tracking the development progress, features, and bugs, I use Trello. You can find the Trello board for this project [here](https://trello.com/b/yyQSPjNm)
 
