@@ -36,5 +36,5 @@ class editProfileForm(forms.ModelForm):
   avatar = ImageField(widget=FileInput)
   class Meta:
     model = User
-    fields = {'username', 'email', 'bio', 'avatar'}
+    fields = {'username',  'bio', 'avatar'}
 
