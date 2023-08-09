@@ -2,6 +2,17 @@
 
 Devfeel is a unique blog app with a fresh perspective on the tech world. Unlike traditional developer blogs that solely focus on technical details, Devfeel's primary emphasis is on the human side of technology. Here, we share personal stories, experiences, and reflections of developers coping with changes and developments in the tech industry.
 
+## Demo Account
+
+```bash
+email: demoaccount@gmail.com
+password: demopass
+```
+
+## Queued Updates/features
+
+For tracking the development progress, features, and bugs of this project, You can find the Trello board [here](https://trello.com/b/yyQSPjNm)
+
 ## Installation
 
 1. Clone the repository:
@@ -30,10 +41,6 @@ pip install -r requirements.txt
 ```bash
 python manage.py runserver
 ```
-
-## Queued Updates/features
-
-For tracking the development progress, features, and bugs, I use Trello. You can find the Trello board for this project [here](https://trello.com/b/yyQSPjNm)
 
 ## Additional info for local setup.
 

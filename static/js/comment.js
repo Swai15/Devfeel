@@ -2,10 +2,8 @@
 // const commentSection = document.querySelector('.comment-section');
 // const postId = commentForm.dataset.commentId;
 
-
 // commentForm.addEventListener('submit',(e) => {
 //   e.preventDefault();
-
 
 //   const commentInput = document.querySelector('[name="comment-text"]');
 //   const commentText = commentInput.value.trim();
@@ -40,7 +38,6 @@
 //       console.log("Error",error);
 //     });
 
-
 // });
 
 // function getCookie(name) {
@@ -48,10 +45,13 @@
 //   return cookieValue ? cookieValue.pop() : "";
 // }
 
+const firstComment = document.querySelector(".no-comment");
+const commentInput = document.getElementById("comment-input");
 
-const firstComment = document.querySelector('.no-comment');
-const commentInput = document.getElementById('comment-input');
-
-firstComment.addEventListener('click',() => {
+firstComment.addEventListener("click", () => {
   commentInput.focus();
 });
+
+const image = document.querySelector(".expand-post-image img");
+const imageHeight = image.offsetHeight;
+document.documentElement.style.setProperty("--image-height", `${imageHeight}px`);
