@@ -1,22 +1,23 @@
 {% extends 'main.html' %} {% block content %}
 <main>
-  <form action="" method="POST" enctype="multipart/form-data">
+  <form class="edit-profile-form" action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <!-- fields -->
-    <div class="edit-profile-header">
+    <div class="edit-profile-header topic-font">
       <h3>Edit User Profile</h3>
     </div>
+
     <div class="edit-profile-container">
       <div class="edit-profile-field editprofile-input-field">
         <div><label for="">Username</label></div>
         <div>{{form.username}}</div>
       </div>
 
-      <div class="edit-profile-field editprofile-input-field">
+      <!-- <div class="edit-profile-field editprofile-input-field">
         <div><label for="">Email</label></div>
         <div>{{form.email}}</div>
-      </div>
+      </div> -->
 
       <div class="edit-profile-field">
         <div><label for="">Upload Avatar</label></div>

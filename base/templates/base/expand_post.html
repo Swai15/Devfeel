@@ -4,51 +4,49 @@
 {% block content %}
 <main class="expand-post-page">
   <div class="expand-post-container">
-    <div class="post-author">
+    <div class="expand-post-image">
+      <img src="{{post.post_image.url}}" alt="Post image" />
+    </div>
+
+    <div class="expand-post-content">
+      <div class="post-author">
+        <div>
+          <img class="post-author-image" src="{{post.author.avatar.url}}" alt="" />
+        </div>
+        <div class="post-author-date">
+          <a class="username-font" href="{% url 'user-profile' post.author.id %}">{{post.author.username}}</a>
+          <p>{{post.post_date|date:"M d"}}</p>
+        </div>
+        {% if request.user == post.author %}
+        <div class="post-author-edit">
+          <a class="post-edit" href="{% url 'update-post' post.id %}"><img src="/static/images/icons/edit.svg" alt="" /></a>
+          <a class="post-delete" href="{% url 'delete-post' post.id%}"><img src="/static/images/icons/delete.svg" alt="" /></a>
+        </div>
+        {% endif %}
+      </div>
+      <div class="post-topic">
+        <h3 class="topic-font">{{post.topic}}</h3>
+        <!-- <h4>{{post.description}}</h4> -->
+      </div>
       <div>
-        <img class="post-author-image" src="{{post.author.avatar.url}}" alt="" />
+        <p>{{post.body|safe}}</p>
       </div>
-
-      <div class="post-author-date">
-        <a class="username-font" href="{% url 'user-profile' post.author.id %}">{{post.author.username}}</a>
-
-        <p>{{post.post_date|date:"M d"}}</p>
+      <!-- LIKES -->
+      <div>
+        {% if request.user.is_authenticated %}
+        <button class="post-like-button" data-post-id="{{post.id}}">
+          {% if post|is_post_liked:request.user %}
+          <!-- gap -->
+          Unlike {% else %} like {% endif%}
+        </button>
+        {% endif %}
+        <!-- like count -->
+        <span class="likes-display topic-font" id="like-count-{{post.id}}">
+          {{post.likes.count}}
+          <!-- if -->
+          {% if post.likes.count == 1 %} like {% else %} likes {%endif%}
+        </span>
       </div>
-
-      {% if request.user == post.author %}
-      <div class="post-author-edit">
-        <a class="post-edit" href="{% url 'update-post' post.id %}"><img src="/static/images/icons/edit.svg" alt="" /></a>
-        <a class="post-delete" href="{% url 'delete-post' post.id%}"><img src="/static/images/icons/delete.svg" alt="" /></a>
-      </div>
-      {% endif %}
-    </div>
-
-    <div class="post-topic">
-      <h3 class="topic-font">{{post.topic}}</h3>
-      <!-- <h4>{{post.description}}</h4> -->
-    </div>
-
-    <div>
-      <p>{{post.body|safe}}</p>
-    </div>
-
-    <!-- LIKES -->
-    <div>
-      {% if request.user.is_authenticated %}
-      <button class="post-like-button" data-post-id="{{post.id}}">
-        {% if post|is_post_liked:request.user %}
-
-        <!-- gap -->
-        Unlike {% else %} like {% endif%}
-      </button>
-
-      {% endif %}
-      <!-- like count -->
-      <span class="likes-display topic-font" id="like-count-{{post.id}}">
-        {{post.likes.count}}
-        <!-- if -->
-        {% if post.likes.count == 1 %} like {% else %} likes {%endif%}
-      </span>
     </div>
   </div>
   <!-- <hr /> -->
