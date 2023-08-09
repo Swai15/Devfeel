@@ -148,6 +148,7 @@ a:link {
   display: grid;
   overflow: hidden;
   transition: max-height 0.2s;
+  z-index: 4;
 }
 
 .dropdown-container.open-menu {
