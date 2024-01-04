@@ -1,4 +1,4 @@
-## About
+## Devfeel CRUD App
 
 Devfeel is a unique blog app with a fresh perspective on the tech world. Unlike traditional developer blogs that solely focus on technical details, Devfeel's primary emphasis is on the human side of technology. Here, we share personal stories, experiences, and reflections of developers coping with changes and developments in the tech industry.
 
