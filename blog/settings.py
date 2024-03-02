@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'base',
     'ckeditor',
-    "django_htmx",
 ]
 
 
@@ -67,7 +66,6 @@ AUTH_USER_MODEL = 'base.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "django_htmx.middleware.HtmxMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
