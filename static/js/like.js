@@ -42,3 +42,20 @@ function getCookie(name) {
   const cookieValue = document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`);
   return cookieValue ? cookieValue.pop() : "";
 }
+
+// document.addEventListener("htmx:responseError", function (event) {
+//   console.log(event.detail);
+// });
+
+// document.addEventListener("htmx:afterRequest", function (event) {
+//   const response = event.detail.xhr.response;
+//   if (response && response.success) {
+//     const action = response.action;
+//     const postId = event.target.dataset.postId;
+//     const likeCountSpan = document.querySelector(`#like-count-${postId}`);
+//     if (likeCountSpan) {
+//       likeCountSpan.innerHTML = response.action === "like" ? parseInt(likeCountSpan.innerHTML) + 1 : parseInt(likeCountSpan.innerHTML) - 1;
+//     }
+//     event.target.innerText = action === "like" ? "Unlike" : "Like";
+//   }
+// });

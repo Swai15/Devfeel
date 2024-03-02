@@ -7,7 +7,7 @@ from .models import User
 from .models import User, Post, Comment
 
 class CustomUserAdmin(UserAdmin):
-  list_display = ('name', 'email', 'avatar')
+  list_display = ('id','name', 'email', 'avatar')
 
 admin.site.register(User)
 admin.site.register(Post)

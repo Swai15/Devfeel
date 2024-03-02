@@ -16,7 +16,9 @@ from .models import User, Post, Like, Comment
 
 from django.core.files import File
 from django.conf import settings
+from django.db import transaction
 import os
+import requests
 
 User = get_user_model()
 # Create your views here.
@@ -24,6 +26,12 @@ User = get_user_model()
 
 def home(request):
   search_posts = request.GET.get('search')
+
+  response = requests.get('https://zenquotes.io/api/random')
+  if response.status_code == 200:
+    quotes = response.json()
+  else: 
+    quotes = None
 
   if search_posts:
     posts = Post.objects.filter(Q(topic__icontains=search_posts) | Q(author__username__icontains=search_posts)).order_by('-post_date')
@@ -35,7 +43,7 @@ def home(request):
   page_number = request.GET.get('page')
   page_obj = paginator.get_page(page_number)
 
-  context = { 'page_obj':page_obj}
+  context = { 'page_obj':page_obj, 'quotes': quotes}
 
   return render(request, 'base/index.html', context)
 
@@ -205,7 +213,7 @@ def editUserProfile(request, pk):
   context = {'user':user, 'form': form}
   return render(request, 'base/edit_user_profile.html', context)
 
-
+@transaction.atomic
 def likePost(request, post_id):
     try:
       post = Post.objects.get(pk=post_id)

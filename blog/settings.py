@@ -37,7 +37,7 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 
 
@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'cloudinary', 
     'cloudinary_storage',
     'base',
-    'ckeditor'
+    'ckeditor',
+    "django_htmx",
 ]
 
 
@@ -66,6 +67,7 @@ AUTH_USER_MODEL = 'base.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "django_htmx.middleware.HtmxMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -107,7 +109,7 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 
 
 
-#Default sqlite3 database
+# Default sqlite3 database
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -116,12 +118,13 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 # }
 
 
-# Postgress Supabase
+
+# # Postgress Supabase
 DATABASES = {
     'default': {
         'ENGINE': os.environ['ENGINE'],
-        'NAME': os.environ['NAME'],
-        'USER': os.environ['USER'],
+        'NAME': os.environ['DBNAME'],
+        'USER': os.environ['DBUSER'],
         'PASSWORD': os.environ['PASSWORD'],
         'HOST': os.environ['HOST'],
         'PORT': os.environ['PORT'],

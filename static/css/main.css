@@ -200,15 +200,36 @@ a:link {
 
 /* HOMEPAGE */
 .home-featured {
-  height: 200px;
+  /* height: 100px; */
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
   /* background-color: rgba(189, 134, 90, 0.548); */
-  background-color: rgba(218, 146, 39, 0.507);
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+  /* background-color: rgba(255, 240, 217, 0.349); */
+  box-shadow: 1px 1px 5px rgb(71, 71, 71);
+  display: flex;
+  flex-direction: column;
+  color: rgb(65, 65, 65);
 }
 
+.home-featured h2 {
+  font-size: 19px;
+  color: rgb(22, 36, 58);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.192);
+}
+
+.quote-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.quote-container p {
+  font-style: italic;
+  /* border: 1px solid black; */
+  text-align: center;
+}
 
 
 .create-post {
@@ -345,10 +366,12 @@ input:-webkit-autofill:active {
 .loginpage-body {
   display: flex;
   justify-content: center;
+  margin-bottom: 0px;
   /* margin-top: 150px; */
-  height: calc(100vh - var(--nav-height));
+  /* height: calc(100vh - var(--nav-height)); */
   margin: -1px -10px -10px -10px;
   background: linear-gradient(#ffe18e, #a06d0f52);
+  height: 100vh;
 }
 
 .loginform-container {
@@ -358,9 +381,13 @@ input:-webkit-autofill:active {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 150px;
+  margin-top: 30px;
   background-color: #ffffff;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.178);
+}
+
+.login-submit button {
+  font-size: 16px;
 }
 
 @media screen and (min-width: 768px) {
@@ -374,7 +401,7 @@ input:-webkit-autofill:active {
   }
 
   .loginform-container {
-    margin-top: 100px;
+    margin-top: 10vh;
     width: 400px;
     height: 500px;
 
@@ -495,13 +522,13 @@ input:-webkit-autofill:active {
   display: flex;
   justify-content: center;
   /* align-items: center; */
-  height: calc(100vh - var(--nav-height));
+  /* height: calc(100vh - var(--nav-height)); */
   background: linear-gradient(#ffe18e, #a06d0f52);
   margin: -1px -10px -10px -10px;
 }
 
 .registration-container {
-  margin-top: 100px;
+  margin-top: 10vh;
   width: 600px;
   height: 500px;
   margin-bottom: 30px;
@@ -520,7 +547,7 @@ input:-webkit-autofill:active {
   }
 
   .registration-container {
-    margin-top: 100px;
+    /* margin-top: 100px; */
     width: 400px;
     height: 500px;
 
@@ -583,14 +610,24 @@ input:-webkit-autofill:active {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  padding: 3px;
+}
+
+.registration-submit button {
+  padding: 2px;
+  font-size: 17px;
 }
 
 .registration-submit button {
   border: none;
   background-color: #387d8669;
-  width: 70px;
-  height: 25px;
+  width: 75px;
+  height: 29px;
   border-radius: 2px;
+}
+
+.registration-submit button:hover {
+  background-color: #4ea1acab;
 }
 
 
@@ -939,6 +976,7 @@ input:-webkit-autofill:active {
   position: relative;
   display: inline-block;
   overflow: hidden;
+  z-index: -3;
 }
 
 .expand-post-image::before {
@@ -1181,7 +1219,7 @@ textarea[name="comment-text"]:focus {
 
 /* DELETE POST */
 
-.delete-post-container {
+.delete-post-container, .delete-comment-container {
   display: flex;
   flex-direction: column;
   justify-content: center;

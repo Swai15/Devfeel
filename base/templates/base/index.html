@@ -4,7 +4,20 @@
 {% block content %}
 <main>
   <div class="home-featured">
-    <h2>featured post/api content</h2>
+    <h2>Daily Nuggets</h2>
+    {% if quotes %}
+    <div class="quote-container">
+      {% for quote in quotes %}
+      <h3>{{quote.q}} </h3>
+      <p>~{{quote.a}}~ </p>
+      {% endfor %}
+    </div>
+
+    {% elif error_message %}
+    <p>{{error_message}}</p>
+    {% else %}
+    <p>No quotes available</p>
+    {% endif %}
   </div>
   <!-- <hr /> -->
 
@@ -86,5 +99,6 @@
 </main>
 
 <script src="/static/js/searchPosts.js"></script>
+
 
 {% endblock content %}
