@@ -9,6 +9,13 @@
 
 }
 
+body {
+  /* display: flex;
+  
+  flex-direction: column; */
+  /* width: 100vw; */
+}
+
 p {
   font-family: 'Times New Roman', Times, serif;
   font-family: var(--body2-font);
@@ -204,6 +211,8 @@ a:link {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
   padding: 10px;
   /* background-color: rgba(189, 134, 90, 0.548); */
   /* background-color: rgba(255, 240, 217, 0.349); */
@@ -275,7 +284,7 @@ a:link {
 .search-posts {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   /* border: 1px black solid; */
 }
 
@@ -289,6 +298,18 @@ a:link {
   align-self: flex-end;
   justify-self: flex-end;
 }
+
+@media screen and (max-width: 420px) {
+  .search-posts {
+    /* width: 10vw; */
+  }
+
+  .search-posts input {
+    width: 20vw;
+  }
+
+}
+
 
 /* .posts-container {
   margin: 0;
